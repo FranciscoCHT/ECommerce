@@ -21,7 +21,6 @@ class CreartablaOfertaProducto extends Migration
             $table->unsignedInteger('producto_id');
             $table->foreign('oferta_id')->references('id')->on('oferta')->onDelete('restrict')->onUpdate('restrict');
             $table->foreign('producto_id')->references('id')->on('producto')->onDelete('restrict')->onUpdate('restrict');
-            $table->timestamps();
         });
     }
 

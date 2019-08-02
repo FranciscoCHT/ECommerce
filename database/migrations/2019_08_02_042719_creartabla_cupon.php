@@ -19,7 +19,6 @@ class CreartablaCupon extends Migration
             $table->string('estado')->nullable();
             $table->string('fecha_creacion');
             $table->string('fecha_termino');
-            $table->timestamps();
         });
     }
 

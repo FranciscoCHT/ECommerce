@@ -24,7 +24,6 @@ class CreartablaCuentaBancaria extends Migration
             $table->string('estado', 50)->nullable();
             $table->unsignedInteger('empresa_id');
             $table->foreign('empresa_id')->references('id')->on('empresa')->onDelete('restrict')->onUpdate('restrict');
-            $table->timestamps();
         });
     }
 

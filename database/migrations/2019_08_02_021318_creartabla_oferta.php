@@ -20,7 +20,6 @@ class CreartablaOferta extends Migration
             $table->float('porcentaje');
             $table->dateTime('fecha_inicio')->nullable();
             $table->dateTime('fecha_termino')->nullable();
-            $table->timestamps();
         });
     }
 

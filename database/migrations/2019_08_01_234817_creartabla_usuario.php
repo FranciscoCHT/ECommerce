@@ -20,7 +20,6 @@ class CreartablaUsuario extends Migration
             $table->string('apellido', 50);
             $table->string('email', 100);
             $table->integer('tipo')->nullable();
-            $table->timestamps();
         });
     }
 

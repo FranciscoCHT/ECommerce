@@ -19,7 +19,6 @@ class CreartablaCategoria extends Migration
             $table->string('descripcion', 200)->nullable();
             $table->integer('estado');
             $table->integer('sku');
-            $table->timestamps();
         });
     }
 

@@ -24,7 +24,6 @@ class CreartablaProducto extends Migration
             $table->integer('stock');
             $table->unsignedInteger('categoria_id');
             $table->foreign('categoria_id')->references('id')->on('categoria')->onDelete('restrict')->onUpdate('restrict');
-            $table->timestamps();
         });
     }
 

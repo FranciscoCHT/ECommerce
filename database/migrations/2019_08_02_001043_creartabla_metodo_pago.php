@@ -17,7 +17,6 @@ class CreartablaMetodoPago extends Migration
             $table->bigIncrements('id');
             $table->string('nombre', 50);
             $table->integer('estado')->nullable();
-            $table->timestamps();
         });
     }
 

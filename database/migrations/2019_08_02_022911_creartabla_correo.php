@@ -18,7 +18,6 @@ class CreartablaCorreo extends Migration
             $table->string('email', 100);
             $table->unsignedInteger('empresa_id');
             $table->foreign('empresa_id')->references('id')->on('empresa')->onDelete('restrict')->onUpdate('restrict');
-            $table->timestamps();
         });
     }
 

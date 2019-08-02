@@ -22,7 +22,6 @@ class CreartablaDetalleVenta extends Migration
             $table->unsignedInteger('venta_id');
             $table->foreign('producto_id')->references('id')->on('producto')->onDelete('restrict')->onUpdate('restrict');
             $table->foreign('venta_id')->references('id')->on('venta')->onDelete('restrict')->onUpdate('restrict');
-            $table->timestamps();
         });
     }
 
