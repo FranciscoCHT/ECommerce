@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('usuario/{nombre?}/{pass?}', 'UsuarioController@index')->name('users');
+
+// Route::get('usuario/{nombre?}/{pass?}', function ($name) {
+//     return $name;
+// })->where('nombre', '[A-Za-z]+')->name('users');
