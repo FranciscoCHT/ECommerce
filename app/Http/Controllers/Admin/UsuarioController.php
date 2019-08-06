@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Admin\Usuario;
 
 class UsuarioController extends Controller
 {
@@ -11,9 +13,12 @@ class UsuarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($nombre, $pass = false)
+    public function index(/*$nombre, $pass = false*/)
     {
-        return view('usuarios', compact('nombre', 'pass'));
+        $usuarios = Usuario::orderBy('id')->get();
+        return view('admin.usuario.index', compact('usuarios'));
+        //return view('admin.usuario.index', ['usuarios' => $usuarios]); //Se pasa un array a laravel, pero para evitar esto
+        //return view('usuarios', compact('nombre', 'pass'));            //se usa compact, el cual hace y manda el array automaticamente. 
     }
 
     /**
@@ -21,9 +26,9 @@ class UsuarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function crear()
     {
-        //
+        return view('admin.usuario.crear');
     }
 
     /**
@@ -32,7 +37,7 @@ class UsuarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function guardar(Request $request)
     {
         //
     }
@@ -43,7 +48,7 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function mostrar($id)
     {
         //
     }
@@ -54,7 +59,7 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editar($id)
     {
         //
     }
@@ -66,7 +71,7 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function actualizar(Request $request, $id)
     {
         //
     }
@@ -77,7 +82,7 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function eliminar($id)
     {
         //
     }

@@ -13,11 +13,17 @@
 
 Route::get('/', 'InicioController@index');
 
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+    Route::get('usuario', 'UsuarioController@index')->name('usuario');
+    Route::get('usuario/crear', 'UsuarioController@crear')->name('crear_usuario');
+    Route::get('usuario/{nombre?}/{pass?}', 'UsuarioController@index')->name('users');
+});
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });
 
-Route::get('usuario/{nombre?}/{pass?}', 'UsuarioController@index')->name('users');
+
 
 // Route::get('usuario/{nombre?}/{pass?}', function ($name) {
 //     return $name;

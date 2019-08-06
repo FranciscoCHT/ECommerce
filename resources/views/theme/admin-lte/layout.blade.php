@@ -44,7 +44,6 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                @yield('contenido')
                 <h1>
                     Boxed Layout
                     <small>Blank example to the boxed layout</small>
@@ -58,6 +57,7 @@
 
             <!-- Main content -->
             <section class="content">
+                @yield('contenido')
                 <div class="callout callout-info">
                     <h4>Tip!</h4>
                     
