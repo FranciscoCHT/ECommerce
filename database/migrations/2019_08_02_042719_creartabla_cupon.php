@@ -19,6 +19,8 @@ class CreartablaCupon extends Migration
             $table->string('estado')->nullable();
             $table->string('fecha_creacion');
             $table->string('fecha_termino');
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_spanish_ci';
         });
     }
 

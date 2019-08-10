@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ValidacionUsuario;
 use App\Models\Admin\Usuario;
 
 class UsuarioController extends Controller
@@ -37,9 +38,10 @@ class UsuarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function guardar(Request $request)
+    public function guardar(ValidacionUsuario $request)
     {
-        //
+        Usuario::create($request->all());
+        return redirect('admin/usuario')->with('mensaje', 'Usuario creado exitosamente.');
     }
 
     /**
@@ -61,7 +63,8 @@ class UsuarioController extends Controller
      */
     public function editar($id)
     {
-        //
+        $usuarios = Usuario::findOrFail($id); // O utilizar find(), pero no genera el 404 si no encuentra
+        return view('admin.usuario.editar', compact('usuarios'));
     }
 
     /**
@@ -71,9 +74,10 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function actualizar(Request $request, $id)
+    public function actualizar(ValidacionUsuario $request, $id)
     {
-        //
+        Usuario::findOrFail($id)->update($request->all());
+        return redirect('admin/usuario')->with('mensaje', 'Usuario actualizado exitosamente.');
     }
 
     /**
@@ -82,8 +86,16 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function eliminar($id)
+    public function eliminar(Request $request, $id)
     {
-        //
+        if ($request->ajax()) {
+            if (Usuario::destroy($id)) {
+                return response()->json(['mensaje' => 'ok']);
+            } else {
+                return response()->json(['mensaje' => 'ng']);
+            }
+        } else {
+            //abort(404);
+        }
     }
 }

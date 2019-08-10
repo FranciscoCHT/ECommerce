@@ -21,6 +21,8 @@ class CreartablaEmpresa extends Migration
             $table->string('tipo', 50)->nullable();
             $table->integer('telefono');
             $table->string('direccion', 50)->nullable();
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_spanish_ci';
         });
     }
 

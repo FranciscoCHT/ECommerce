@@ -19,6 +19,8 @@ class CreartablaCategoria extends Migration
             $table->string('descripcion', 200)->nullable();
             $table->integer('estado');
             $table->integer('sku');
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_spanish_ci';
         });
     }
 
