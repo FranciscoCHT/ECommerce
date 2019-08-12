@@ -1,4 +1,31 @@
-@extends("theme.$theme.layout") <!-- Extiende el layout, pudiendo modificar, a diferencia de include, que no podria usar section-->
+<!-- Modal -->
+<div class="modal fade" tabindex="-1" role="dialog" id="modalEditar{{ $usuario->id }}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="alert alert-danger" style="display:none"></div>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title">Modificar usuario</h5>
+            </div>
+            <div class="modal-body">
+                @include('includes.form-error')
+                <form action="{{route('actualizar_usuario', ['id' => $usuario->id])}}" id="form-editar" class="form-horizontal d-inline" method="POST">
+                    @csrf @method("put")
+                    <div class="box-body">
+                        @include('admin.usuario.form')
+                    </div>
+                    <div class="box-footer">
+                        @include('includes.boton-form-editar')
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- @extends("theme.$theme.layout") <!-- Extiende el layout, pudiendo modificar, a diferencia de include, que no podria usar section-->
 @section('titulo')
     Editar usuarios
 @endsection
@@ -36,4 +63,4 @@
             </div>
         </div>
     </div>
-@endsection
+@endsection --}}

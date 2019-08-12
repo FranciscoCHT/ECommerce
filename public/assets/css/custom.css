@@ -19,3 +19,13 @@ label.requerido::after {
 .width70 {
     width: 70px !important;
 }
+
+.modal-dialog { 
+    max-width: 100%; 
+    width: auto !important; 
+    display: inline-block; 
+}
+
+.modal{
+    text-align: center;
+}

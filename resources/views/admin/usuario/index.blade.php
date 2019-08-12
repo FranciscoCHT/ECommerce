@@ -5,6 +5,7 @@
 
 @section("scripts")
 <script src="{{asset("assets/pages/scripts/admin/index.js")}}" type="text/javascript"></script>
+<script src="{{asset("assets/pages/scripts/admin/crear.js")}}" type="text/javascript"></script>
 @endsection
 
 @section('contenido')
@@ -15,9 +16,14 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">Usuarios</h3>
                     <div class="box-tools pull-right">
-                        <a href="{{route('crear_usuario')}}" class="btn btn-block btn-info btn-sm">
+                        <!-- Trigger the modal with a button -->
+                        <button type="button" class="btn btn-block btn-info btn-sm" data-toggle="modal" data-target="#modalCrear" id="open">
                             <i class="fa fa-fw fa-reply-all"></i> Nuevo registro
-                        </a>
+                        </button>
+                        @include('admin.usuario.crear')
+                        {{-- <a href="{{route('crear_usuario')}}" class="btn btn-block btn-info btn-sm">
+                            <i class="fa fa-fw fa-reply-all"></i> Nuevo registro
+                        </a> --}}
                     </div>
                 </div>
                 <div class="box-body table-responsive no-padding">
@@ -49,9 +55,14 @@
                                     <td>{{$usuario->email}}</td>
                                     <td>{{$usuario->tipo}}</td>
                                     <td>
-                                        <a href="{{route('editar_usuario', ['id' => $usuario->id])}}" class="btn-accion-tabla tooltipsC" title="Editar este registro">
+                                        <!-- Trigger the modal with a button -->
+                                        <button type="submit" class="btn-accion-tabla tooltipsC" data-toggle="modal" data-target="#modalEditar{{ $usuario->id }}" title="Editar este registro" id="open">
                                             <i class="fa fa-fw fa-pencil"></i>
-                                        </a>
+                                        </button>
+                                        @include('admin.usuario.editar')
+                                        {{-- <a href="{{route('editar_usuario', ['id' => $usuario->id])}}" class="btn-accion-tabla tooltipsC">
+                                            <i class="fa fa-fw fa-pencil"></i>
+                                        </a> --}}
                                         <form action="{{route('eliminar_usuario', ['id' => $usuario->id])}}" class="form-eliminar d-inline" method="POST">
                                             @csrf @method("delete")
                                             <button type="submit" class="btn-accion-tabla eliminar tooltipsC" title="Eliminar este registro">
