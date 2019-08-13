@@ -29,3 +29,23 @@ label.requerido::after {
 .modal{
     text-align: center;
 }
+
+.modal-header {
+    padding: 1rem;
+    border-bottom: 1px solid #dadada;
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem;
+    background-color: #eee;
+}
+
+.modal-content {
+    border-radius: .3rem;
+}
+
+.modal-body {
+    padding-bottom: 10px;
+}
+ 
+.modal-title {
+    font-weight: bold;
+}

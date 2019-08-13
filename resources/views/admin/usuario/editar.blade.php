@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" tabindex="-1" role="dialog" id="modalEditar{{ $usuario->id }}">
+<div class="modal fade onShownModal" tabindex="-1" role="dialog" id="modalEditar_{{ $usuario->id }}">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="alert alert-danger" style="display:none"></div>
@@ -10,8 +10,7 @@
                 <h5 class="modal-title">Modificar usuario</h5>
             </div>
             <div class="modal-body">
-                @include('includes.form-error')
-                <form action="{{route('actualizar_usuario', ['id' => $usuario->id])}}" id="form-editar" class="form-horizontal d-inline" method="POST">
+                <form action="{{route('actualizar_usuario', ['id' => $usuario->id])}}" id="form-editar_{{$usuario->id}}" name="form-editar" class="form-horizontal d-inline" method="POST">
                     @csrf @method("put")
                     <div class="box-body">
                         @include('admin.usuario.form')

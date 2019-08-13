@@ -11,13 +11,14 @@
 @section('contenido')
     <div class="row">
         <div class="col-lg-12">
+            @include('includes.form-error')
             @include('includes.mensaje')
             <div class="box box-primary">
-                <div class="box-header with-border">
+                <div class="box-header with-border" style="padding: 15px;">
                     <h3 class="box-title">Usuarios</h3>
-                    <div class="box-tools pull-right">
+                    <div class="box-tools pull-right" style="top: 10px;">
                         <!-- Trigger the modal with a button -->
-                        <button type="button" class="btn btn-block btn-info btn-sm" data-toggle="modal" data-target="#modalCrear" id="open">
+                        <button type="button" class="btn btn-block btn-success btn-sm" data-toggle="modal" data-target="#modalCrear" id="open">
                             <i class="fa fa-fw fa-reply-all"></i> Nuevo registro
                         </button>
                         @include('admin.usuario.crear')
@@ -27,7 +28,7 @@
                     </div>
                 </div>
                 <div class="box-body table-responsive no-padding">
-                    <table class="table table-bordered table-hover table-striped" id="tabla-data">
+                    <table class="table table-dark table-bordered table-hover table-striped" id="tabla-data">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -36,7 +37,7 @@
                                 <th>Apellido</th>
                                 <th>Email</th>
                                 <th>Tipo</th>
-                                <th class="width70"></th>
+                                <th class="width70">Acción</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -56,7 +57,7 @@
                                     <td>{{$usuario->tipo}}</td>
                                     <td>
                                         <!-- Trigger the modal with a button -->
-                                        <button type="submit" class="btn-accion-tabla tooltipsC" data-toggle="modal" data-target="#modalEditar{{ $usuario->id }}" title="Editar este registro" id="open">
+                                        <button type="submit" class="btn-accion-tabla tooltipsC" data-toggle="modal" data-target="#modalEditar_{{ $usuario->id }}" title="Editar este registro" id="open">
                                             <i class="fa fa-fw fa-pencil"></i>
                                         </button>
                                         @include('admin.usuario.editar')

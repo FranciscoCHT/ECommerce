@@ -38,13 +38,13 @@ $(document).ready(function () {
             success: function (respuesta) {
                 if (respuesta.mensaje == "ok") {
                     form.parents('tr').remove();
-                    ecommerce.notificaciones('El registro fue eliminado correctamente', 'ecommerce', 'success');
+                    ecommerce.notificaciones('El registro fue eliminado correctamente.', 'Mensaje de sistema', 'success');
                 } else {
-                    ecommerce.notificaciones('El registro no pudo ser eliminado, hay recursos usandolo', 'ecommerce', 'error');
+                    ecommerce.notificaciones('El registro no pudo ser eliminado, hay recursos usándolo.', 'Mensaje de sistema', 'error');
                 }
             },
             error: function () {
-                console.log("hola")
+                
             }
         });
     }

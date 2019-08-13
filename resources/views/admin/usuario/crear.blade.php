@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" tabindex="-1" role="dialog" id="modalCrear">
+<div class="modal fade onShowModal" tabindex="-1" role="dialog" id="modalCrear">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="alert alert-danger" style="display:none"></div>
@@ -10,8 +10,7 @@
                 <h5 class="modal-title">Crear usuario</h5>
             </div>
             <div class="modal-body">
-                @include('includes.form-error')
-                <form action="{{route('guardar_usuario')}}" id="form-crear" class="form-horizontal" method="POST">
+                <form action="{{route('guardar_usuario')}}" id="form-crear" name="form-crear" class="form-horizontal d-inline" method="POST">
                     @csrf
                     <div class="box-body">
                         @include('admin.usuario.form')
