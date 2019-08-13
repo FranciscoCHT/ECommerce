@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade onShowModal" tabindex="-1" role="dialog" id="modalCrear">
+<div class="modal fade onShowCrear" tabindex="-1" role="dialog" id="modalCrear">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="alert alert-danger" style="display:none"></div>
