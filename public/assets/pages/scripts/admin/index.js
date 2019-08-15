@@ -24,6 +24,13 @@ $(document).ready(function () {
        }
      });
 
+     $(".onlyNum").on( 'keypress', function(e){
+        var keyCode = e.which;
+       if ( (keyCode != 8 || keyCode ==32 ) && (keyCode < 48 || keyCode > 57)) { 
+         return false;
+       }
+     });
+
     function ajaxRequest(form) {
         $.ajax({
             url: form.attr('action'),
