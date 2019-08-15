@@ -21,13 +21,13 @@ label.requerido::after {
 }
 
 .modal-dialog { 
-    max-width: 100%; 
+    /* max-width: 100%; 
     width: auto !important; 
-    display: inline-block; 
+    display: inline-block;  */
 }
 
 .modal{
-    text-align: center;
+    /* text-align: center; */
 }
 
 .modal-header {
@@ -44,8 +44,21 @@ label.requerido::after {
 
 .modal-body {
     padding-bottom: 10px;
+    padding-top: 10px;
 }
  
 .modal-title {
     font-weight: bold;
+}
+
+.fadeopen {
+    animation: fadein .5s;
+    -moz-animation: fadein .5s; /* Firefox */
+    -webkit-animation: fadein .5s; /* Safari and Chrome */
+    -o-animation: fadein .5s; /* Opera */
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }

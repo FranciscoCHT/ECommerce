@@ -5,9 +5,12 @@ $(document).ready(function () {
         const $element = $(element),
             timeout = $element.data('auto-dismiss') || 5000;
         setTimeout(function () {
-            $element.alert('close');
+            $(".fadeclose").fadeOut();
         }, timeout);
     });
+    $(".cerrar").click(function(){
+        $(".fadeopen").fadeOut();
+      });
     //TOOLTIPS
     $('body').tooltip({
         trigger: 'hover',
