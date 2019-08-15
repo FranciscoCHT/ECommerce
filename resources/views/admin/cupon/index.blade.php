@@ -42,8 +42,8 @@
                                     <td>{{$cupon->id}}</td>
                                     <td>{{$cupon->descuento}}</td>
                                     <td>{{$cupon->estado}}</td>
-                                    <td>{{$cupon->fecha_creacion}}</td>
-                                    <td>{{$cupon->fecha_termino}}</td>
+                                    <td>{{$cupon->fecha_creacion ? date('d-m-Y') : ''}}</td>
+                                    <td>{{$cupon->fecha_termino ? date('d-m-Y H:i', strtotime($cupon->fecha_termino)) : ''}}</td>
                                     <td>
                                         <!-- Trigger the modal with a button -->
                                         <button type="submit" class="btn-accion-tabla tooltipsC" data-toggle="modal" data-target="#modalEditar_{{ $cupon->id }}" title="Editar este registro" id="open">

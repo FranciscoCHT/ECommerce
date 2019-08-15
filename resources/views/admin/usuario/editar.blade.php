@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade onShowEdicionUser" tabindex="-1" role="dialog" id="modalEditar_{{ $usuario->id }}">
+<div class="modal fade validarEdicion onShowEdicionUser" tabindex="-1" role="dialog" id="modalEditar_{{ $usuario->id }}">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="alert alert-danger" style="display:none"></div>

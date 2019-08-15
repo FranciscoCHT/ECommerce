@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade onShowEdicionOferta" tabindex="-1" role="dialog" id="modalEditar_{{ $oferta->id }}">
+<div class="modal fade validarEdicion onShowEdicionOferta" tabindex="-1" role="dialog" id="modalEditar_{{ $oferta->id }}">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="alert alert-danger" style="display:none"></div>

@@ -13,13 +13,13 @@
 <div class="form-group">
     <label for="fecha_inicio" class="col-lg-3 control-label">Fecha Inicio</label>
     <div class="col-lg-8">
-        <input type="datetime-local" name="fecha_inicio" id="fecha_inicio" class="form-control" value="{{old('fecha_inicio')}}" autocomplete="off"/>
+        <input type="datetime-local" min="2000-01-01T00:00:00" max="2099-01-01T00:00:00" name="fecha_inicio" id="fecha_inicio" class="form-control" value="{{old('fecha_inicio')}}" autocomplete="off"/>
     </div>
 </div>
 <div class="form-group">
     <label for="fecha_termino" class="col-lg-3 control-label">Fecha Término</label>
     <div class="col-lg-8">
-        <input type="datetime-local" name="fecha_termino" id="fecha_termino" class="form-control" value="{{old('fecha_termino')}}" autocomplete="off"/>
+        <input type="datetime-local" min="2000-01-01T00:00:00" max="2099-01-01T00:00:00" name="fecha_termino" id="fecha_termino" class="form-control" value="{{old('fecha_termino')}}" autocomplete="off"/>
     </div>
 </div>
 <div class="form-group">
