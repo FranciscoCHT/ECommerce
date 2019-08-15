@@ -44,8 +44,8 @@
                                     <td>{{$oferta->nombre}}</td>
                                     <td>{{$oferta->porcentaje}}</td>
                                     <td>{{$oferta->descripcion}}</td>
-                                    <td>{{$oferta->fecha_inicio}}</td>
-                                    <td>{{$oferta->fecha_termino}}</td>
+                                    <td>{{$oferta->fecha_inicio ? date('d-m-Y H:i', strtotime($oferta->fecha_inicio)) : ''}}</td>
+                                    <td>{{$oferta->fecha_termino ? date('d-m-Y H:i', strtotime($oferta->fecha_termino)) : ''}}</td>
                                     <td>
                                         <!-- Trigger the modal with a button -->
                                         <button type="submit" class="btn-accion-tabla tooltipsC" data-toggle="modal" data-target="#modalEditar_{{ $oferta->id }}" title="Editar este registro" id="open">
