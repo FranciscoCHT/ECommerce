@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ValidacionProducto;
+use App\Models\Admin\Categoria;
 use App\Models\Admin\Producto;
 
 class ProductoController extends Controller
@@ -17,7 +18,8 @@ class ProductoController extends Controller
     public function index()
     {
         $productos = Producto::orderBy('id')->get();
-        return view('admin.producto.index', compact('productos'));
+        $categorias = Categoria::orderBy('id')->pluck('nombre', 'id');
+        return view('admin.producto.index', compact('productos', 'categorias'));
     }
 
     /**

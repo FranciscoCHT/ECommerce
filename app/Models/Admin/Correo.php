@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\admin;
+namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,4 +10,9 @@ class Correo extends Model
     protected $fillable = ['email', 'empresa_id'];
     protected $guarded = ['id'];
     public $timestamps = false;
+
+    public function empresa()
+    {
+        return $this->belongsTo(Empresa::class);
+    }
 }

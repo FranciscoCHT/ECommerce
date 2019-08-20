@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\admin;
+namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,4 +10,14 @@ class Empresa extends Model
     protected $fillable = ['nombre', 'razon_social', 'telefono', 'direccion', 'rut', 'tipo'];
     protected $guarded = ['id'];
     public $timestamps = false;
+
+    public function correos()
+    {
+        return $this->hasMany(Correo::class);
+    }
+
+    public function cuentas_bancarias()
+    {
+        return $this->hasMany(Cuenta_bancaria::class);
+    }
 }

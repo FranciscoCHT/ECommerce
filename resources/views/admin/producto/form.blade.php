@@ -31,7 +31,12 @@
 <div class="form-group">
     <label for="categoria_id" class="col-lg-3 control-label requerido">Categoria</label>
     <div class="col-lg-8">
-        <input type="text" name="categoria_id" id="categoria_id" class="form-control onlyNum" value="{{old('categoria_id')}}" autocomplete="off" required/>
+        {{-- <input type="text" name="categoria_id" id="categoria_id" class="form-control onlyNum" value="{{old('categoria_id')}}" autocomplete="off" required/> --}}
+        <select class="form-control required">
+            @foreach($categorias as $categoria)
+                <option>{{$categoria}}</option>
+            @endforeach
+        </select>
     </div>
 </div>
 <div class="form-group">
