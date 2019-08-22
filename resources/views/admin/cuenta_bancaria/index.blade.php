@@ -51,7 +51,7 @@
                                     <td>{{$cuenta_bancaria->banco}}</td>
                                     <td>{{$cuenta_bancaria->correo}}</td>
                                     <td>{{$cuenta_bancaria->estado}}</td>
-                                    <td>{{$cuenta_bancaria->empresa_id}}</td>
+                                    <td>{{$cuenta_bancaria->empresa->nombre}}</td>
                                     <td>
                                         <!-- Trigger the modal with a button -->
                                         <button type="submit" class="btn-accion-tabla tooltipsC" data-toggle="modal" data-target="#modalEditar_{{ $cuenta_bancaria->id }}" title="Editar este registro" id="open">

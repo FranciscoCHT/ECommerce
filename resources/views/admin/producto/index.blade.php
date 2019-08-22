@@ -50,7 +50,7 @@
                                     <td>{{$producto->precio_oferta}}</td>
                                     <td>{{$producto->estado}}</td>
                                     <td>{{$producto->stock}}</td>
-                                    <td>{{$producto->categoria_id}}</td>
+                                    <td>{{$producto->categoria->nombre}}</td>
                                     <td>{{$producto->fecha_modificacion}}</td>
                                     <td>
                                         <!-- Trigger the modal with a button -->

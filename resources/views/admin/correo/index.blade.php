@@ -39,7 +39,7 @@
                                 <tr>
                                     <td>{{$correo->id}}</td>
                                     <td>{{$correo->email}}</td>
-                                    <td>{{$correo->empresa_id}}</td>
+                                    <td>{{$correo->empresa->nombre}}</td>
                                     <td>
                                         <!-- Trigger the modal with a button -->
                                         <button type="submit" class="btn-accion-tabla tooltipsC" data-toggle="modal" data-target="#modalEditar_{{ $correo->id }}" title="Editar este registro" id="open">

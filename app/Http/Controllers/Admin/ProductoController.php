@@ -17,8 +17,12 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        $productos = Producto::orderBy('id')->get();
-        $categorias = Categoria::orderBy('id')->pluck('nombre', 'id');
+        $productos = Producto::with('categoria')->orderBy('id')->get();
+        $categorias = Categoria::orderBy('id')->pluck('nombre', 'id')->toArray();
+        // foreach ($categorias as $categoria) {            //
+        //     $data[$categoria->id] = $categoria->nombre   // Esto es lo mismo que hacer pluck()
+        // }                                                //
+        //dd($productos);                                              //
         return view('admin.producto.index', compact('productos', 'categorias'));
     }
 

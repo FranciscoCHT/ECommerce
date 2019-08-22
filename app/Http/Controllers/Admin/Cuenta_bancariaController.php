@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ValidacionCuenta_bancaria;
 use App\Models\Admin\Cuenta_bancaria;
+use App\Models\Admin\Empresa;
 
 class Cuenta_bancariaController extends Controller
 {
@@ -16,8 +17,9 @@ class Cuenta_bancariaController extends Controller
      */
     public function index(/*$nombre, $pass = false*/)
         {
-            $cuenta_bancarias = Cuenta_bancaria::orderBy('id')->get();
-            return view('admin.cuenta_bancaria.index', compact('cuenta_bancarias'));
+            $cuenta_bancarias = Cuenta_bancaria::with('empresa')->orderBy('id')->get();
+            $empresas = Empresa::orderBy('id')->pluck('nombre', 'id')->toArray();
+            return view('admin.cuenta_bancaria.index', compact('cuenta_bancarias', 'empresas'));
             //return view('admin.cuenta_bancaria.index', ['cuenta_bancarias' => $cuenta_bancarias]); //Se pasa un array a laravel, pero para evitar esto
             //return view('cuenta_bancarias', compact('nombre', 'pass'));            //se usa compact, el cual hace y manda el array automaticamente. 
         }

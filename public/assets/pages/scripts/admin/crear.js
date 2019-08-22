@@ -29,12 +29,14 @@ $('.onShowEdicionMetodo').on('show.bs.modal', function () {
 });
 $('.onShowEdicionProducto').on('show.bs.modal', function () {
     var datos = $(this).find('form').data('producto');
+    
     $(this).find('form').find("input[name=nombre]")[0].defaultValue = checkNull(datos.nombre);
     $(this).find('form').find("input[name=precio]")[0].defaultValue = checkNull(datos.precio);
     $(this).find('form').find("input[name=precio_oferta]")[0].defaultValue = checkNull(datos.precio_oferta);
     $(this).find('form').find("input[name=estado]")[0].defaultValue = checkNull(datos.estado);
     $(this).find('form').find("input[name=stock]")[0].defaultValue = checkNull(datos.stock);
-    $(this).find('form').find("input[name=categoria_id]")[0].defaultValue = checkNull(datos.categoria_id);
+    $(this).find('form').find("select[name=categoria_id]").find("option:selected").removeAttr("selected");
+    $(this).find('form').find("select[name=categoria_id]").find("option[value=" + datos.categoria_id + "]").attr('selected','selected');
     $(this).find('form').find("textarea[name=descripcion]")[0].defaultValue = checkNull(datos.descripcion);
     $(this).find('form').trigger('reset');
 });
@@ -86,13 +88,15 @@ $('.onShowEdicionCuenta').on('show.bs.modal', function () {
     $(this).find('form').find("input[name=correo]")[0].defaultValue = checkNull(datos.correo);
     $(this).find('form').find("input[name=rut]")[0].defaultValue = checkNull(datos.rut);
     $(this).find('form').find("input[name=estado]")[0].defaultValue = checkNull(datos.estado);
-    $(this).find('form').find("input[name=empresa_id]")[0].defaultValue = checkNull(datos.empresa_id);
+    $(this).find('form').find("select[name=empresa_id]").find("option:selected").removeAttr("selected");
+    $(this).find('form').find("select[name=empresa_id]").find("option[value=" + datos.empresa_id + "]").attr('selected','selected');
     $(this).find('form').trigger('reset');
 });
 $('.onShowEdicionCorreo').on('show.bs.modal', function () {
     var datos = $(this).find('form').data('correo');
     $(this).find('form').find("input[name=email]")[0].defaultValue = checkNull(datos.email);
-    $(this).find('form').find("input[name=empresa_id]")[0].defaultValue = checkNull(datos.empresa_id);
+    $(this).find('form').find("select[name=empresa_id]").find("option:selected").removeAttr("selected");
+    $(this).find('form').find("select[name=empresa_id]").find("option[value=" + datos.empresa_id + "]").attr('selected','selected');
     $(this).find('form').trigger('reset');
 });
 $('.onShowEdicionCategoria').on('show.bs.modal', function () {
@@ -152,5 +156,4 @@ function checkNull(dato) {
 //     idForm = idForm[1];
 //     $('#form-editar_' + idForm).trigger('reset');
 //     ecommerce.validacionGeneral('form-editar_' + idForm);
-    
 // });

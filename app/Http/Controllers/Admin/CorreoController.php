@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ValidacionCorreo;
 use App\Models\Admin\Correo;
+use App\Models\Admin\Empresa;
 
 class CorreoController extends Controller
 {
@@ -16,8 +17,9 @@ class CorreoController extends Controller
      */
     public function index(/*$nombre, $pass = false*/)
         {
-            $correos = Correo::orderBy('id')->get();
-            return view('admin.correo.index', compact('correos'));
+            $correos = Correo::with('empresa')->orderBy('id')->get();
+            $empresas = Empresa::orderBy('id')->pluck('nombre', 'id')->toArray();
+            return view('admin.correo.index', compact('correos', 'empresas'));
             //return view('admin.correo.index', ['correos' => $correos]); //Se pasa un array a laravel, pero para evitar esto
             //return view('correos', compact('nombre', 'pass'));            //se usa compact, el cual hace y manda el array automaticamente. 
         }
