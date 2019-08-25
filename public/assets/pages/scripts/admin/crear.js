@@ -55,6 +55,8 @@ $('.onShowEdicionOferta').on('show.bs.modal', function () {
     $(this).find('form').find("textarea[name=descripcion]")[0].defaultValue = checkNull(datos.descripcion);
     $(this).find('form').find("input[name=fecha_inicio]")[0].defaultValue = fecha_inicio[0] + 'T' + fecha_inicio[1];
     $(this).find('form').find("input[name=fecha_termino]")[0].defaultValue = fecha_termino[0] + 'T' + fecha_termino[1];
+    $(this).find('form').find("select[name=estado]").find("option:selected").removeAttr("selected");
+    $(this).find('form').find("select[name=estado]").find("option[value=" + datos.estado + "]").attr('selected','selected');
     $(this).find('form').trigger('reset');
 });
 $('.onShowEdicionEmpresa').on('show.bs.modal', function () {

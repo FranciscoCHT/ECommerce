@@ -27,7 +27,8 @@ class ValidacionOferta extends FormRequest
             'nombre' => 'required|max:50|unique:oferta,nombre,' . $this->route('id'),
             'descripcion' => 'nullable',
             'fecha_inicio' => 'nullable',
-            'fecha_termino' => 'nullable'
+            'fecha_termino' => 'nullable',
+            'estado' => 'nullable'
         ];
     }
 }

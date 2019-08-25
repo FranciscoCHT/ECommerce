@@ -1,6 +1,12 @@
 @extends("theme.$theme.layout") <!-- Extiende el layout, pudiendo modificar, a diferencia de include, que no podria usar section-->
 @section('titulo')
-    Categorias
+    Categorías
+@endsection
+@section('titulosec')
+    Categorías
+@endsection
+@section('descripcion')
+    Lista de categorías y creación de éstas.
 @endsection
 
 @section("scripts")
@@ -13,17 +19,16 @@
         <div class="col-lg-12">
             @include('includes.form-error')
             @include('includes.mensaje')
-            <div class="box box-primary">
-                <div class="box-header with-border" style="padding: 15px;">
-                    <h3 class="box-title">Categorias</h3>
-                    <div class="box-tools pull-right" style="top: 10px;">
-                        <!-- Trigger the modal with a button -->
-                        <button type="button" class="btn btn-block btn-success btn-sm" data-toggle="modal" data-target="#modalCrear" id="open">
-                            <i class="fa fa-fw fa-reply-all"></i> Nuevo registro
-                        </button>
-                        @include('admin.categoria.crear')
-                    </div>
+            <div class="top-boton-left">
+                <div>
+                    <!-- Trigger the modal with a button -->
+                    <button type="button" class="btn btn-block btn-success btn-md" data-toggle="modal" data-target="#modalCrear" id="open">
+                        <i class="fa fa-fw fa-plus"></i> Nuevo registro
+                    </button>
+                    @include('admin.categoria.crear')
                 </div>
+            </div>
+            <div class="box">
                 <div class="box-body table-responsive no-padding">
                     <table class="table table-dark table-bordered table-hover table-striped" id="tabla-data">
                         <thead>

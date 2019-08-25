@@ -20,15 +20,15 @@ label.requerido::after {
     width: 70px !important;
 }
 
-.modal-dialog { 
-    /* max-width: 100%; 
+/* .modal-dialog { 
+    max-width: 100%; 
     width: auto !important; 
-    display: inline-block;  */
+    display: inline-block;  
 }
 
 .modal{
-    /* text-align: center; */
-}
+     text-align: center; 
+} */
 
 .modal-header {
     padding: 1rem;
@@ -61,4 +61,48 @@ label.requerido::after {
 @keyframes fadein {
     from { opacity: 0; }
     to   { opacity: 1; }
+}
+.content {
+    font-family: 'Helvetica Neue', 'Segoe UI', Helvetica, Verdana, sans-serif;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 15px;
+}
+
+.btn-success {
+    background-color: #72d63c;
+    border-color: transparent;
+    color: #fff;
+}
+
+.table {
+    color: #28484f;
+    background-color: #f5f5f5;
+}
+
+th {
+    color: #28484f;
+    font-weight: 500!important;
+}
+
+.table-bordered>thead>tr>th, .table-bordered>thead>tr>td {
+    border-bottom: 2px solid #dedede;
+}
+
+.top-boton-right {
+    margin-bottom: 10px;
+    display:inline-block;
+    float:right;
+}
+
+.top-boton-left {
+    margin-bottom: 15px;
+    display:inline-block;
+    float:left;
+}
+
+.box {
+    display:inline-block;
+    border: 1px solid #d2d6de;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }

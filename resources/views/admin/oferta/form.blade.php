@@ -23,6 +23,15 @@
     </div>
 </div>
 <div class="form-group">
+    <label for="estado" class="col-lg-3 control-label">Estado</label>
+    <div class="col-lg-8">
+        <select class="form-control" name="estado" id="estado">
+            <option value="0" @if (old('estado') == 0) selected="selected" @endif>Inactiva</option>
+            <option value="1" @if (old('estado') == 1) selected="selected" @endif>Activa</option>
+        </select>
+    </div>
+</div>
+<div class="form-group">
     <label for="descripcion" class="col-lg-3 control-label">Descripción</label>
     <div class="col-lg-8">
         <textarea maxlength="200" name="descripcion" id="descripcion" class="form-control" autocomplete="off" style="resize: none;">{{old('descripcion')}}</textarea>

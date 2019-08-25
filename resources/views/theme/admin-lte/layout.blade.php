@@ -21,7 +21,7 @@
 
   @yield('styles')
 
-  <link rel="stylesheet" href="{{asset("assets/css/custom.css")}}">
+  <link rel="stylesheet" type="text/css" href="{{asset("assets/css/custom.css")}}">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,7 +33,7 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-green sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
         <!-- Inicio Header -->
@@ -46,17 +46,18 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <h1>
-                    Boxed Layout
-                    <small>Blank example to the boxed layout</small>
-                </h1>
-                <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li><a href="#">Layout</a></li>
-                    <li class="active">Boxed</li>
-                </ol>
-            </section>
+            <div style="padding: 15px 15px 0 15px;">
+                <section class="content-header" style="border-bottom: 1px solid #000;padding-bottom: 10px; margin-left:10px;margin-right: 10px;">
+                    <h1>
+                        <span style="text-shadow: 3px 3px 11px #a7a7a7; letter-spacing:1px;">@yield('titulosec', 'Ecommerce')</span>
+                        <small>@yield('descripcion', 'Ecommerce')</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="/Home"><i class="fa fa-dashboard"></i> Inicio</a></li>
+                        <li class="active">Nodos</li>
+                    </ol>
+                </section>
+            </div>
 
             <!-- Main content -->
             <section class="content">
