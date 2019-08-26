@@ -4,6 +4,8 @@ $(document).ready(function () {
 
 $('.onShowCrear').on('show.bs.modal', function () {
     $('#form-crear').trigger('reset');
+    var validator = $('#form-crear').validate();
+    validator.resetForm();
 })
 
 $('.validarEdicion').on('shown.bs.modal', function () {
@@ -114,6 +116,7 @@ $("#cancelado").click(function() {
     var n = $(this).closest('form').find("input[type=datetime-local], input[type=date], input[type=text], input[type=email], input[type=checkbox], input[type=password], textarea").length;
     for (i = 0; i < n; i++) { 
         $(this).closest('form').find("input[type=datetime-local], input[type=date], input[type=text], input[type=email], input[type=checkbox], input[type=password], textarea")[i].defaultValue = "";
+        $(this).closest('form').find("select").find("option:selected").removeAttr("selected");
     }
 });
 

@@ -32,7 +32,8 @@
     <label for="categoria_id" class="col-lg-3 control-label requerido">Categoria</label>
     <div class="col-lg-8">
         {{-- <input type="text" name="categoria_id" id="categoria_id" class="form-control onlyNum" value="{{old('categoria_id')}}" autocomplete="off" required/> --}}
-        <select class="form-control required" name="categoria_id" id="categoria_id" required>
+        <select class="form-control select2 required" style="width: 100%" data-error="Escoja una categoría..." data-placeholder="Seleccione una categoría..." name="categoria_id" id="categoria_id" required>
+            <option value="" selected disabled hidden></option>
             @foreach($categorias as $id => $categoria)
                 <option value="{{$id}}" @if (old('categoria_id') == $id) selected="selected" @endif>{{$categoria}}</option>
             @endforeach

@@ -70,6 +70,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::post('correo', 'CorreoController@guardar')->name('guardar_correo');
     Route::put('correo/{id}', 'CorreoController@actualizar')->name('actualizar_correo');
     Route::delete('correo/{id}', 'CorreoController@eliminar')->name('eliminar_correo');
+    
+    /*Rutas OFERTA_PRODUCTO*/
+    Route::get('oferta_producto', 'Oferta_productoController@index')->name('oferta_producto');
+    Route::post('oferta_producto', 'Oferta_productoController@guardar')->name('guardar_oferta_producto');
+    Route::put('oferta_producto/{id}', 'Oferta_productoController@actualizar')->name('actualizar_oferta_producto');
+    Route::delete('oferta_producto/{id}', 'Oferta_productoController@eliminar')->name('eliminar_oferta_producto');
 });
 
 // Route::get('/', function () {
