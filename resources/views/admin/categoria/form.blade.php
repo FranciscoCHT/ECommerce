@@ -19,6 +19,6 @@
 <div class="form-group">
     <label for="descripcion" class="col-lg-3 control-label">Descripción</label>
     <div class="col-lg-8">
-        <textarea maxlength="200" name="descripcion" id="descripcion" class="form-control" autocomplete="off" style="resize: none;">{{old('descripcion')}}</textarea>
+        <textarea maxlength="200" name="descripcion" id="descripcion" class="form-control" placeholder="Describa la categoría..." autocomplete="off" style="resize: none;">{{old('descripcion')}}</textarea>
     </div>
 </div>

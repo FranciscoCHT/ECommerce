@@ -14,6 +14,8 @@
 <script src="{{asset("assets/pages/scripts/admin/crear.js")}}" type="text/javascript"></script>
 <script src="{{asset("assets/$theme/bower_components/select2/dist/js/select2.full.min.js")}}"></script>
 <script src="{{asset("assets/pages/scripts/admin/initSelect2.js")}}" type="text/javascript"></script>
+<script src="{{asset("assets/$theme/bower_components/inputmask/dist/jquery.inputmask.bundle.js")}}"></script>
+<script src="{{asset("assets/pages/scripts/admin/initInputMask.js")}}" type="text/javascript"></script>
 @endsection
 
 @section('contenido')
@@ -38,11 +40,11 @@
                                 <th>ID</th>
                                 <th>Nombre</th>
                                 <th>Descripción</th>
-                                <th>Precio</th>
-                                <th>Precio oferta</th>
                                 <th>Estado</th>
                                 <th>Stock</th>
                                 <th>Categoría</th>
+                                <th style="text-align: right;">Precio</th>
+                                <th style="text-align: right;">Precio oferta</th>
                                 <th>Fecha de modificación</th>
                                 <th class="width70">Acción</th>
                             </tr>
@@ -53,11 +55,11 @@
                                     <td>{{$producto->id}}</td>
                                     <td>{{$producto->nombre}}</td>
                                     <td>{{$producto->descripcion}}</td>
-                                    <td>{{$producto->precio}}</td>
-                                    <td>{{$producto->precio_oferta}}</td>
-                                    <td>{{$producto->estado}}</td>
+                                    <td>@if ($producto->estado === 1) Activo @elseif ($producto->estado === 0) Inactivo @endif</td>
                                     <td>{{$producto->stock}}</td>
                                     <td>{{$producto->categoria->nombre}}</td>
+                                    <td align="right">${{number_format($producto->precio, 0, '', '.')}}</td>
+                                    <td align="right">${{number_format($producto->precio_oferta, 0, '', '.')}}</td>
                                     <td>{{$producto->fecha_modificacion}}</td>
                                     <td>
                                         <!-- Trigger the modal with a button -->

@@ -35,7 +35,8 @@ $('.onShowEdicionProducto').on('show.bs.modal', function () {
     $(this).find('form').find("input[name=nombre]")[0].defaultValue = checkNull(datos.nombre);
     $(this).find('form').find("input[name=precio]")[0].defaultValue = checkNull(datos.precio);
     $(this).find('form').find("input[name=precio_oferta]")[0].defaultValue = checkNull(datos.precio_oferta);
-    $(this).find('form').find("input[name=estado]")[0].defaultValue = checkNull(datos.estado);
+    $(this).find('form').find("select[name=estado]").find("option:selected").removeAttr("selected");
+    $(this).find('form').find("select[name=estado]").find("option[value=" + datos.estado + "]").attr('selected','selected');
     $(this).find('form').find("input[name=stock]")[0].defaultValue = checkNull(datos.stock);
     $(this).find('form').find("select[name=categoria_id]").find("option:selected").removeAttr("selected");
     $(this).find('form').find("select[name=categoria_id]").find("option[value=" + datos.categoria_id + "]").attr('selected','selected');
@@ -44,19 +45,11 @@ $('.onShowEdicionProducto').on('show.bs.modal', function () {
 });
 $('.onShowEdicionOferta').on('show.bs.modal', function () {
     var datos = $(this).find('form').data('oferta');
-    var fecha_inicio = "";
-    var fecha_termino = "";
-    if (datos.fecha_inicio != null ) {
-        fecha_inicio = datos.fecha_inicio.split(' ');
-    }
-    if (datos.fecha_termino != null ) {
-        fecha_termino = datos.fecha_termino.split(' ');
-    }
     $(this).find('form').find("input[name=porcentaje]")[0].defaultValue = checkNull(datos.porcentaje);
     $(this).find('form').find("input[name=nombre]")[0].defaultValue = checkNull(datos.nombre);
     $(this).find('form').find("textarea[name=descripcion]")[0].defaultValue = checkNull(datos.descripcion);
-    $(this).find('form').find("input[name=fecha_inicio]")[0].defaultValue = fecha_inicio[0] + 'T' + fecha_inicio[1];
-    $(this).find('form').find("input[name=fecha_termino]")[0].defaultValue = fecha_termino[0] + 'T' + fecha_termino[1];
+    $(this).find('form').find("input[name=fecha_inicio]")[0].defaultValue =  checkNull(datos.fecha_inicio);
+    $(this).find('form').find("input[name=fecha_termino]")[0].defaultValue =  checkNull(datos.fecha_termino);
     $(this).find('form').find("select[name=estado]").find("option:selected").removeAttr("selected");
     $(this).find('form').find("select[name=estado]").find("option[value=" + datos.estado + "]").attr('selected','selected');
     $(this).find('form').trigger('reset');

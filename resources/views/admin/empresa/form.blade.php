@@ -1,7 +1,7 @@
 <div class="form-group">
     <label for="rut" class="col-lg-3 control-label requerido">Rut</label>
     <div class="col-lg-8">
-        <input type="text" name="rut" id="rut" class="form-control validaRut" value="{{old('rut')}}" autocomplete="off" required/>
+        <input type="text" name="rut" id="rut" class="form-control rutMask" placeholder="XX.XXX.XXX-X" value="{{old('rut')}}" autocomplete="off" required/>
     </div>
 </div>
 <div class="form-group">

@@ -8,10 +8,18 @@
 @section('descripcion')
     Lista de ofertas y creación de éstas.
 @endsection
+@section('styles')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" />
+@endsection
 
 @section("scripts")
 <script src="{{asset("assets/pages/scripts/admin/index.js")}}" type="text/javascript"></script>
 <script src="{{asset("assets/pages/scripts/admin/crear.js")}}" type="text/javascript"></script>
+<script src="{{asset("assets/$theme/bower_components/inputmask/dist/jquery.inputmask.bundle.js")}}"></script>
+<script src="{{asset("assets/pages/scripts/admin/initInputMask.js")}}" type="text/javascript"></script>
+<script type="text/javascript" src="{{asset("assets/$theme/bower_components/moment/min/moment-with-locales.min.js")}}"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+<script src="{{asset("assets/pages/scripts/admin/initDateTimePicker.js")}}" type="text/javascript"></script>
 @endsection
 
 @section('contenido')
@@ -35,11 +43,11 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Nombre</th>
-                                <th>Porcentaje</th>
                                 <th>Descripcion</th>
                                 <th>Estado</th>
-                                <th>Fecha inicio</th>
-                                <th>Fecha término</th>
+                                <th style="text-align:right">Porcentaje</th>
+                                <th style="text-align:right">Fecha inicio</th>
+                                <th style="text-align:right">Fecha término</th>
                                 <th class="width70">Acción</th>
                             </tr>
                         </thead>
@@ -48,11 +56,11 @@
                                 <tr>
                                     <td>{{$oferta->id}}</td>
                                     <td>{{$oferta->nombre}}</td>
-                                    <td>{{$oferta->porcentaje}}</td>
                                     <td>{{$oferta->descripcion}}</td>
-                                    <td>{{$oferta->estado}}</td>
-                                    <td>{{$oferta->fecha_inicio ? date('d-m-Y H:i', strtotime($oferta->fecha_inicio)) : ''}}</td>
-                                    <td>{{$oferta->fecha_termino ? date('d-m-Y H:i', strtotime($oferta->fecha_termino)) : ''}}</td>
+                                    <td>@if ($oferta->estado === 1) Activa @elseif ($oferta->estado === 0) Inactiva @endif</td>
+                                    <td align="right">{{$oferta->porcentaje}} %</td>
+                                    <td align="right">{{$oferta->fecha_inicio ? date('d-m-Y H:i', strtotime($oferta->fecha_inicio)) : ''}}</td>
+                                    <td align="right">{{$oferta->fecha_termino ? date('d-m-Y H:i', strtotime($oferta->fecha_termino)) : ''}}</td>
                                     <td>
                                         <!-- Trigger the modal with a button -->
                                         <button type="submit" class="btn-accion-tabla tooltipsC" data-toggle="modal" data-target="#modalEditar_{{ $oferta->id }}" title="Editar este registro" id="open">

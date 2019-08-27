@@ -17,12 +17,12 @@ $(document).ready(function () {
         });
     });
 
-    $(".validaRut").on( 'keypress', function(e){
-        var keyCode = e.which;
-       if ( (keyCode != 8 || keyCode ==32 ) && (keyCode < 48 || keyCode > 57) && (keyCode != 45 && keyCode != 75 && keyCode != 107)) { 
-         return false;
-       }
-     });
+    // $(".validaRut").on( 'keypress', function(e){
+    //     var keyCode = e.which;
+    //    if ( (keyCode != 8 || keyCode ==32 ) && (keyCode < 48 || keyCode > 57) && (keyCode != 45 && keyCode != 75 && keyCode != 107)) { 
+    //      return false;
+    //    }
+    //  });
 
      $(".onlyNum").on( 'keypress', function(e){
         var keyCode = e.which;
@@ -30,6 +30,25 @@ $(document).ready(function () {
          return false;
        }
      });
+
+     $(".onlyNumWithDot").on( 'keypress', function(e){
+        var keyCode = e.which;
+       if ( (keyCode != 8 || keyCode ==32 ) && (keyCode < 48 || keyCode > 57) && (keyCode != 44 && keyCode != 46)) { 
+         return false;
+       }
+     });
+
+    //  $(".currency").on({
+    //     "focus": function (event) {
+    //         $(event.target).select();
+    //     },
+    //     "keyup": function (event) {
+    //         $(event.target).val(function (index, value ) {
+    //             return value.replace(/\D/g, "")
+    //                         .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+    //         });
+    //     }
+    // });
 
     function ajaxRequest(form) {
         $.ajax({

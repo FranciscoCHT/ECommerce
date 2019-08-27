@@ -7,19 +7,23 @@
 <div class="form-group">
     <label for="precio" class="col-lg-3 control-label requerido">Precio</label>
     <div class="col-lg-8">
-        <input type="text" name="precio" id="precio" class="form-control onlyNum" value="{{old('precio')}}" autocomplete="off" required/>
+        <input type="text" name="precio" id="precio" class="form-control precioMask" placeholder="$" value="{{old('precio')}}" autocomplete="off" required/>
     </div>
 </div>
 <div class="form-group">
     <label for="precio_oferta" class="col-lg-3 control-label">Precio Oferta</label>
     <div class="col-lg-8">
-        <input type="text" name="precio_oferta" id="precio_oferta" class="form-control onlyNum" value="{{old('precio_oferta')}}" autocomplete="off"/>
+        <input type="text" name="precio_oferta" id="precio_oferta" class="form-control precioMask" placeholder="$" value="{{old('precio_oferta')}}" autocomplete="off"/>
     </div>
 </div>
 <div class="form-group">
     <label for="estado" class="col-lg-3 control-label requerido">Estado</label>
     <div class="col-lg-8">
-        <input type="text" name="estado" id="estado" class="form-control onlyNum" value="{{old('estado')}}" autocomplete="off" required/>
+        <select class="form-control" name="estado" id="estado" required>
+            <option value="" hidden disabled selected>Seleccione estado del producto...</option>
+            <option value="0" @if (old('estado') == 0 && old('estado') != null) selected="selected" @endif>Inactivo</option>
+            <option value="1" @if (old('estado') == 1) selected="selected" @endif>Activo</option>
+        </select>
     </div>
 </div>
 <div class="form-group">
@@ -43,6 +47,6 @@
 <div class="form-group">
     <label for="descripcion" class="col-lg-3 control-label">Descripción</label>
     <div class="col-lg-8">
-        <textarea maxlength="200" name="descripcion" id="descripcion" class="form-control" autocomplete="off" style="resize: none;">{{old('descripcion')}}</textarea>
+        <textarea maxlength="200" name="descripcion" id="descripcion" class="form-control" placeholder="Describa el producto..." autocomplete="off" style="resize: none;">{{old('descripcion')}}</textarea>
     </div>
 </div>

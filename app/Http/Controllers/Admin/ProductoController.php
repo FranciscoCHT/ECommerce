@@ -81,6 +81,7 @@ class ProductoController extends Controller
     public function actualizar(ValidacionProducto $request, $id)
     {
         Producto::findOrFail($id)->update($request->all());
+        Producto::findOrFail($id)->update(['fecha_modificacion' => now()]);
         return redirect('admin/producto')->with('mensaje', 'Producto actualizado exitosamente.');
     }
 

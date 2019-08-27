@@ -1,7 +1,7 @@
 <div class="form-group">
     <label for="rut" class="col-lg-3 control-label requerido">Rut</label>
     <div class="col-lg-8">
-        <input type="text" name="rut" id="rut" class="form-control validaRut" value="{{old('rut')}}" autocomplete="off" required/>
+        <input type="text" name="rut" id="rut" class="form-control rutMask" placeholder="XX.XXX.XXX-X" value="{{old('rut')}}" autocomplete="off" required/>
     </div>
 </div>
 <div class="form-group">
@@ -19,7 +19,7 @@
 <div class="form-group">
     <label for="email" class="col-lg-3 control-label requerido">Email</label>
     <div class="col-lg-8">
-        <input type="email" name="email" id="email" class="form-control" value="{{old('email')}}" autocomplete="off" required/>
+        <input type="email" name="email" id="email" placeholder="correo@dominio.cl" class="form-control" value="{{old('email')}}" autocomplete="off" required/>
     </div>
 </div>
 <div class="form-group">
