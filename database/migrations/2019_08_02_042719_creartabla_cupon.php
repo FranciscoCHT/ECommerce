@@ -16,7 +16,7 @@ class CreartablaCupon extends Migration
         Schema::create('cupon', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('descuento');
-            $table->string('estado')->nullable();
+            $table->boolean('estado')->nullable();
             $table->date('fecha_creacion');
             $table->dateTime('fecha_termino')->nullable();
             $table->charset = 'utf8mb4';

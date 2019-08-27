@@ -21,7 +21,7 @@ class CreartablaCuentaBancaria extends Migration
             $table->string('numero_cuenta', 50);
             $table->string('banco', 50);
             $table->string('correo', 50)->nullable();
-            $table->string('estado', 50)->nullable();
+            $table->boolean('estado', 50)->nullable();
             $table->unsignedInteger('empresa_id');
             $table->foreign('empresa_id')->references('id')->on('empresa')->onDelete('restrict')->onUpdate('restrict');
             $table->charset = 'utf8mb4';

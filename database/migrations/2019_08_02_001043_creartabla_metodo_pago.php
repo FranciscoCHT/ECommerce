@@ -16,7 +16,7 @@ class CreartablaMetodoPago extends Migration
         Schema::create('metodo_pago', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre', 50);
-            $table->integer('estado')->nullable();
+            $table->boolean('estado')->nullable();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';
         });

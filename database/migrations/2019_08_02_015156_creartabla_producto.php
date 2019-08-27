@@ -20,7 +20,7 @@ class CreartablaProducto extends Migration
             $table->dateTime('fecha_modificacion')->nullable();
             $table->integer('precio');
             $table->integer('precio_oferta')->nullable();
-            $table->integer('estado');
+            $table->boolean('estado');
             $table->integer('stock');
             $table->unsignedInteger('categoria_id');
             $table->foreign('categoria_id')->references('id')->on('categoria')->onDelete('restrict')->onUpdate('restrict');
