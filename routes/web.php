@@ -55,9 +55,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
     /*Rutas EMPRESA*/
     Route::get('empresa', 'EmpresaController@index')->name('empresa');
-    Route::post('empresa', 'EmpresaController@guardar')->name('guardar_empresa');
+    //Route::post('empresa', 'EmpresaController@guardar')->name('guardar_empresa');
     Route::put('empresa/{id}', 'EmpresaController@actualizar')->name('actualizar_empresa');
-    Route::delete('empresa/{id}', 'EmpresaController@eliminar')->name('eliminar_empresa');
+    //Route::delete('empresa/{id}', 'EmpresaController@eliminar')->name('eliminar_empresa');
 
     /*Rutas CUENTA_BANCARIA*/
     Route::get('cuenta_bancaria', 'Cuenta_bancariaController@index')->name('cuenta_bancaria');
