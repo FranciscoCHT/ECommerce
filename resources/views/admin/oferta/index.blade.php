@@ -37,6 +37,14 @@
                 </div>
             </div>
             <div class="box">
+                <div class="box-header" style="background-color:#f5f5f5;">
+                    <div class="box-tools" style="position: initial;float:right;">
+                        <div class="input-group input-group-md" style="width: 300px;">
+                            <input type="text" class="form-control input-md" placeholder="Buscar...">
+                            <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                        </div>
+                    </div>
+                </div>
                 <div class="box-body table-responsive no-padding">
                     <table class="table table-dark table-bordered table-hover table-striped" id="tabla-data">
                         <thead>
