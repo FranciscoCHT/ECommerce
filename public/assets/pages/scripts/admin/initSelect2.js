@@ -1,27 +1,42 @@
 $(function () {
-    $(this).find('.select2search').select2({
-        allowClear: true
-    });
-    $(this).find('.select2').select2({
-        allowClear: true,
-        minimumResultsForSearch: Infinity
-    });
+    $.fn.select2.defaults.set('language', 'es');
+    if (!$(this).find('.select2').hasClass("select2-hidden-accessible")) {
+        $(this).find('.select2').select2({
+            allowClear: true,
+            minimumResultsForSearch: Infinity
+        });
+    }
+    if (!$(this).find('.select2search').hasClass("select2-hidden-accessible")) {
+        $(this).find('.select2search').select2({
+            allowClear: true
+        });
+    }   
+
     $('.onShowCrearSelect').on('show.bs.modal', function () {
-        $(this).find('.select2search').select2({
-            allowClear: true
-        });
-        $(this).find('.select2').select2({
-            allowClear: true,
-            minimumResultsForSearch: Infinity
-        });
+        if (!$(this).find('.select2').hasClass("select2-hidden-accessible")) {
+            $(this).find('.select2').select2({
+                allowClear: true,
+                minimumResultsForSearch: Infinity
+            });
+        }
+        if (!$(this).find('.select2search').hasClass("select2-hidden-accessible")) {
+            $(this).find('.select2search').select2({
+                allowClear: true
+            });
+        }  
     })
+    
     $('.onShowEditarSelect').on('show.bs.modal', function () {
-        $(this).find('.select2search').select2({
-            allowClear: true
-        });
-        $(this).find('.select2').select2({
-            allowClear: true,
-            minimumResultsForSearch: Infinity
-        });
+        if (!$(this).find('.select2').hasClass("select2-hidden-accessible")) {
+            $(this).find('.select2').select2({
+                allowClear: true,
+                minimumResultsForSearch: Infinity
+            });
+        }
+        if (!$(this).find('.select2search').hasClass("select2-hidden-accessible")) {
+            $(this).find('.select2search').select2({
+                allowClear: true
+            });
+        }  
     })
 })
