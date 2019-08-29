@@ -8,10 +8,15 @@
 @section('descripcion')
     Lista de usuarios y creación de éstos.
 @endsection
+@section('breadcrumb')
+    <li class="active">Usuarios</li>
+@endsection
 
 @section("scripts")
 <script src="{{asset("assets/pages/scripts/admin/index.js")}}" type="text/javascript"></script>
 <script src="{{asset("assets/pages/scripts/admin/crear.js")}}" type="text/javascript"></script>
+<script src="{{asset("assets/$theme/bower_components/select2/dist/js/select2.full.min.js")}}"></script>
+<script src="{{asset("assets/pages/scripts/admin/initSelect2.js")}}" type="text/javascript"></script>
 <script src="{{asset("assets/$theme/bower_components/inputmask/dist/jquery.inputmask.bundle.js")}}"></script>
 <script src="{{asset("assets/pages/scripts/admin/initInputMask.js")}}" type="text/javascript"></script>
 @endsection
@@ -51,7 +56,7 @@
                         <div>
                             <!-- Trigger the modal with a button -->
                             <button type="button" class="btn btn-block btn-success btn-md" data-toggle="modal" data-target="#modalCrear" id="open">
-                                <i class="fa fa-fw fa-plus"></i> Nuevo registro
+                                <i class="fa fa-fw fa-plus"></i> Nuevo usuario
                             </button>
                             @include('admin.usuario.crear')
                         </div>
@@ -61,7 +66,7 @@
                     <table class="table table-dark table-bordered table-hover table-striped" id="tabla-data">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>N°</th>
                                 <th>RUT</th>
                                 <th>Nombre</th>
                                 <th>Apellido</th>
@@ -77,9 +82,9 @@
                             {{-- @if () // manera de abrir y llamar if en blade de laravel 
                             @else
                             @endif --}}
-                            @foreach ($usuarios as $usuario)
+                            @foreach ($usuarios as $index => $usuario)
                                 <tr>
-                                    <td>{{$usuario->id}}</td>
+                                    <td>{{$index+1}}</td>
                                     <td>{{$usuario->rut}}</td>
                                     <td>{{$usuario->nombre}}</td>
                                     <td>{{$usuario->apellido}}</td>

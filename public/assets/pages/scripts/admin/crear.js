@@ -19,14 +19,16 @@ $('.onShowEdicionUser').on('show.bs.modal', function () {
     $(this).find('form').find("input[name=nombre]")[0].defaultValue = checkNull(datos.nombre);
     $(this).find('form').find("input[name=email]")[0].defaultValue = checkNull(datos.email);
     $(this).find('form').find("input[name=apellido]")[0].defaultValue = checkNull(datos.apellido);
-    $(this).find('form').find("input[name=tipo]")[0].defaultValue = checkNull(datos.tipo);
+    $(this).find('form').find("select[name=tipo]").find("option:selected").removeAttr("selected");
+    $(this).find('form').find("select[name=tipo]").find("option[value=" + datos.tipo + "]").attr('selected','selected');
     $(this).find('form').find("input[name=rut]")[0].defaultValue = checkNull(datos.rut);
     $(this).find('form').trigger('reset');    
 });
 $('.onShowEdicionMetodo').on('show.bs.modal', function () {
     var datos = $(this).find('form').data('metodo_pago');
     $(this).find('form').find("input[name=nombre]")[0].defaultValue = checkNull(datos.nombre);
-    $(this).find('form').find("input[name=estado]")[0].defaultValue = checkNull(datos.estado);
+    $(this).find('form').find("select[name=estado]").find("option:selected").removeAttr("selected");
+    $(this).find('form').find("select[name=estado]").find("option[value=" + datos.estado + "]").attr('selected','selected');
     $(this).find('form').trigger('reset');    
 });
 $('.onShowEdicionProducto').on('show.bs.modal', function () {
@@ -66,25 +68,25 @@ $('.onShowEdicionEmpresa').on('show.bs.modal', function () {
 });
 $('.onShowEdicionCupon').on('show.bs.modal', function () {
     var datos = $(this).find('form').data('cupon');
-    var fecha_termino = "";
-    if (datos.fecha_termino != null ) {
-        fecha_termino = datos.fecha_termino.split(' ');
-    }
+    $(this).find('form').find("input[name=nombre]")[0].defaultValue = checkNull(datos.nombre);
     $(this).find('form').find("input[name=descuento]")[0].defaultValue = checkNull(datos.descuento);
-    $(this).find('form').find("input[name=estado]")[0].defaultValue = checkNull(datos.estado);
-    $(this).find('form').find("input[name=fecha_creacion]")[0].defaultValue = checkNull(datos.fecha_creacion);
-    $(this).find('form').find("input[name=fecha_termino]")[0].defaultValue = fecha_termino[0] + 'T' + fecha_termino[1];
+    $(this).find('form').find("select[name=estado]").find("option:selected").removeAttr("selected");
+    $(this).find('form').find("select[name=estado]").find("option[value=" + datos.estado + "]").attr('selected','selected');
+    $(this).find('form').find("input[name=fecha_inicio]")[0].defaultValue =  checkNull(datos.fecha_inicio);
+    $(this).find('form').find("input[name=fecha_termino]")[0].defaultValue =  checkNull(datos.fecha_termino);
     $(this).find('form').trigger('reset');
 });
 $('.onShowEdicionCuenta').on('show.bs.modal', function () {
     var datos = $(this).find('form').data('cuenta_bancaria');
     $(this).find('form').find("input[name=nombre]")[0].defaultValue = checkNull(datos.nombre);
-    $(this).find('form').find("input[name=tipo]")[0].defaultValue = checkNull(datos.tipo);
+    $(this).find('form').find("select[name=tipo]").find("option:selected").removeAttr("selected");
+    $(this).find('form').find("select[name=tipo]").find("option[value='" + datos.tipo + "']").attr('selected','selected');
     $(this).find('form').find("input[name=numero_cuenta]")[0].defaultValue = checkNull(datos.numero_cuenta);
     $(this).find('form').find("input[name=banco]")[0].defaultValue = checkNull(datos.banco);
     $(this).find('form').find("input[name=correo]")[0].defaultValue = checkNull(datos.correo);
     $(this).find('form').find("input[name=rut]")[0].defaultValue = checkNull(datos.rut);
-    $(this).find('form').find("input[name=estado]")[0].defaultValue = checkNull(datos.estado);
+    $(this).find('form').find("select[name=estado]").find("option:selected").removeAttr("selected");
+    $(this).find('form').find("select[name=estado]").find("option[value=" + datos.estado + "]").attr('selected','selected');
     $(this).find('form').find("select[name=empresa_id]").find("option:selected").removeAttr("selected");
     $(this).find('form').find("select[name=empresa_id]").find("option[value=" + datos.empresa_id + "]").attr('selected','selected');
     $(this).find('form').trigger('reset');
@@ -100,7 +102,8 @@ $('.onShowEdicionCategoria').on('show.bs.modal', function () {
     var datos = $(this).find('form').data('categoria');
     $(this).find('form').find("input[name=nombre]")[0].defaultValue = checkNull(datos.nombre);
     $(this).find('form').find("textarea[name=descripcion]")[0].defaultValue = checkNull(datos.descripcion);
-    $(this).find('form').find("input[name=estado]")[0].defaultValue = checkNull(datos.estado);
+    $(this).find('form').find("select[name=estado]").find("option:selected").removeAttr("selected");
+    $(this).find('form').find("select[name=estado]").find("option[value=" + datos.estado + "]").attr('selected','selected');
     $(this).find('form').find("input[name=sku]")[0].defaultValue = checkNull(datos.sku);
     $(this).find('form').trigger('reset');
 });

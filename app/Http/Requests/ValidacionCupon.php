@@ -24,8 +24,8 @@ class ValidacionCupon extends FormRequest
     public function rules()
     {
         return [
-            'descuento' => 'required|max:50|unique:cupon,descuento,' . $this->route('id'),
             'estado' => 'nullable',
+            'fecha_inicio' => 'nullable',
             'fecha_termino' => 'nullable'
         ];
     }

@@ -10,13 +10,13 @@
         <div class="form-group" style="margin-bottom:10px;">
             <label for="nombre" class="control-label requerido">Nombre</label>
             <div>
-            <input type="text" name="nombre" id="nombre" class="form-control" value="{{old('nombre', $empresas->nombre ?? '')}}" autocomplete="off" required/>
+            <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ej: Waliex" value="{{old('nombre', $empresas->nombre ?? '')}}" autocomplete="off" required/>
             </div>
         </div>
         <div class="form-group" style="margin-bottom:10px;">
             <label for="razon_social" class="control-label">Razón social</label>
             <div>
-                <input type="text" name="razon_social" id="razon_social" class="form-control" value="{{old('razon_social', $empresas->razon_social ?? '')}}" autocomplete="off"/>
+                <input type="text" name="razon_social" id="razon_social" class="form-control" placeholder="Ej: Waliex, E.I.R.L." value="{{old('razon_social', $empresas->razon_social ?? '')}}" autocomplete="off"/>
             </div>
         </div>
     </div>
@@ -27,19 +27,19 @@
         <div class="form-group" style="margin-bottom:10px;">
             <label for="telefono" class="control-label requerido">Teléfono</label>
             <div>
-                <input type="text" name="telefono" id="telefono" class="form-control onlyNum" value="{{old('telefono', $empresas->telefono ?? '')}}" autocomplete="off" required/>
+                <input type="text" name="telefono" id="telefono" class="form-control onlyNum" placeholder="Ej: 999999999" value="{{old('telefono', $empresas->telefono ?? '')}}" autocomplete="off" required/>
             </div>
         </div>
         <div class="form-group" style="margin-bottom:10px;">
-            <label for="direccion" class="control-label">Direccion</label>
+            <label for="direccion" class="control-label">Dirección</label>
             <div>
-                <input type="text" name="direccion" id="direccion" class="form-control" value="{{old('direccion', $empresas->direccion ?? '')}}" autocomplete="off"/>
+                <input type="text" name="direccion" id="direccion" class="form-control" placeholder="Ej: Las Brisas #2542" value="{{old('direccion', $empresas->direccion ?? '')}}" autocomplete="off"/>
             </div>
         </div>
         <div class="form-group" style="margin-bottom:10px;">
             <label for="tipo" class="control-label">Tipo</label>
             <div>
-                <input type="text" name="tipo" id="tipo" class="form-control" value="{{old('tipo', $empresas->tipo ?? '')}}" autocomplete="off"/>
+                <input type="text" name="tipo" id="tipo" class="form-control" placeholder="Ej: Accesorios, abarrotes" value="{{old('tipo', $empresas->tipo ?? '')}}" autocomplete="off"/>
             </div>
         </div>
     </div>

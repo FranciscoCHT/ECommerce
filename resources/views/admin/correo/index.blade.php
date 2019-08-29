@@ -8,6 +8,9 @@
 @section('descripcion')
     Lista de correos de empresas y creación de éstos.
 @endsection
+@section('breadcrumb')
+    <li class="active">Correos</li>
+@endsection
 
 @section("scripts")
 <script src="{{asset("assets/pages/scripts/admin/index.js")}}" type="text/javascript"></script>
@@ -33,9 +36,9 @@
                         <div>
                             <!-- Trigger the modal with a button -->
                             <button type="button" class="btn btn-block btn-success btn-md" data-toggle="modal" data-target="#modalCrear" id="open">
-                                <i class="fa fa-fw fa-plus"></i> Nuevo registro
+                                <i class="fa fa-fw fa-plus"></i> Nuevo correo
                             </button>
-                            @include('admin.usuario.crear')
+                            @include('admin.correo.crear')
                         </div>
                     </div>
                 </div>
@@ -43,25 +46,23 @@
                     <table class="table table-dark table-bordered table-hover table-striped" id="tabla-data">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>N°</th>
                                 <th>Email</th>
-                                <th>Empresa</th>
                                 <th class="width70">Acción</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($correos as $correo)
+                            @foreach ($correos as $index => $correo)
                                 <tr>
-                                    <td>{{$correo->id}}</td>
+                                    <td>{{$index+1}}</td>
                                     <td>{{$correo->email}}</td>
-                                    <td>{{$correo->empresa->nombre}}</td>
                                     <td>
                                         <!-- Trigger the modal with a button -->
                                         <button type="submit" class="btn-accion-tabla tooltipsC" data-toggle="modal" data-target="#modalEditar_{{ $correo->id }}" title="Editar este registro" id="open">
                                             <i class="fa fa-fw fa-pencil"></i>
                                         </button>
                                         @include('admin.correo.editar')
-                                        <form action="{{route('eliminar_producto', ['id' => $correo->id])}}" class="form-eliminar d-inline" method="POST">
+                                        <form action="{{route('eliminar_correo', ['id' => $correo->id])}}" class="form-eliminar d-inline" method="POST">
                                             @csrf @method("delete")
                                             <button type="submit" class="btn-accion-tabla eliminar tooltipsC" title="Eliminar este registro">
                                                 <i class="fa fa-fw fa-trash text-danger"></i>

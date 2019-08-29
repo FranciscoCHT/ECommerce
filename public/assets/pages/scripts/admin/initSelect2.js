@@ -1,15 +1,27 @@
 $(function () {
-    $('.select2').select2({
+    $(this).find('.select2search').select2({
         allowClear: true
     });
-})
-$('.onShowCrearSelect').on('show.bs.modal', function () {
     $(this).find('.select2').select2({
-        allowClear: true
+        allowClear: true,
+        minimumResultsForSearch: Infinity
     });
-})
-$('.onShowEditarSelect').on('show.bs.modal', function () {
-    $(this).find('.select2').select2({
-        allowClear: true
-    });
+    $('.onShowCrearSelect').on('show.bs.modal', function () {
+        $(this).find('.select2search').select2({
+            allowClear: true
+        });
+        $(this).find('.select2').select2({
+            allowClear: true,
+            minimumResultsForSearch: Infinity
+        });
+    })
+    $('.onShowEditarSelect').on('show.bs.modal', function () {
+        $(this).find('.select2search').select2({
+            allowClear: true
+        });
+        $(this).find('.select2').select2({
+            allowClear: true,
+            minimumResultsForSearch: Infinity
+        });
+    })
 })

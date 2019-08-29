@@ -8,10 +8,21 @@
 @section('descripcion')
     Lista de cupones y creación de éstos.
 @endsection
+@section('styles')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" />
+@endsection
+@section('breadcrumb')
+    <li class="active">Cupones</li>
+@endsection
 
 @section("scripts")
 <script src="{{asset("assets/pages/scripts/admin/index.js")}}" type="text/javascript"></script>
 <script src="{{asset("assets/pages/scripts/admin/crear.js")}}" type="text/javascript"></script>
+<script src="{{asset("assets/$theme/bower_components/select2/dist/js/select2.full.min.js")}}"></script>
+<script src="{{asset("assets/pages/scripts/admin/initSelect2.js")}}" type="text/javascript"></script>
+<script type="text/javascript" src="{{asset("assets/$theme/bower_components/moment/min/moment-with-locales.min.js")}}"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+<script src="{{asset("assets/pages/scripts/admin/initDateTimePicker.js")}}" type="text/javascript"></script>
 @endsection
 
 @section('contenido')
@@ -31,9 +42,9 @@
                         <div>
                             <!-- Trigger the modal with a button -->
                             <button type="button" class="btn btn-block btn-success btn-md" data-toggle="modal" data-target="#modalCrear" id="open">
-                                <i class="fa fa-fw fa-plus"></i> Nuevo registro
+                                <i class="fa fa-fw fa-plus"></i> Nuevo cupón
                             </button>
-                            @include('admin.usuario.crear')
+                            @include('admin.cupon.crear')
                         </div>
                     </div>
                 </div>
@@ -41,29 +52,33 @@
                     <table class="table table-dark table-bordered table-hover table-striped" id="tabla-data">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>N°</th>
+                                <th>Nombre</th>
                                 <th>Descuento</th>
                                 <th>Estado</th>
-                                <th>Fecha creación</th>
-                                <th>Fecha término</th>
+                                <th style="text-align:right">Fecha creación</th>
+                                <th style="text-align:right">Fecha inicio</th>
+                                <th style="text-align:right">Fecha término</th>
                                 <th class="width70">Acción</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($cupons as $cupon)
+                            @foreach ($cupons as $index => $cupon)
                                 <tr>
-                                    <td>{{$cupon->id}}</td>
+                                    <td>{{$index+1}}</td>
+                                    <td>{{$cupon->nombre}}</td>
                                     <td>{{$cupon->descuento}}</td>
-                                    <td>{{$cupon->estado}}</td>
-                                    <td>{{$cupon->fecha_creacion ? date('d-m-Y') : ''}}</td>
-                                    <td>{{$cupon->fecha_termino ? date('d-m-Y H:i', strtotime($cupon->fecha_termino)) : ''}}</td>
+                                    <td>@if ($cupon->estado === 1) Activo @elseif ($cupon->estado === 0) Inactivo @endif</td>
+                                    <td align="right">{{$cupon->fecha_creacion ? date('d-m-Y H:i', strtotime($cupon->fecha_creacion)) : ''}}</td>
+                                    <td align="right">{{$cupon->fecha_inicio ? date('d-m-Y H:i', strtotime($cupon->fecha_inicio)) : ''}}</td>
+                                    <td align="right">{{$cupon->fecha_termino ? date('d-m-Y H:i', strtotime($cupon->fecha_termino)) : ''}}</td>
                                     <td>
                                         <!-- Trigger the modal with a button -->
                                         <button type="submit" class="btn-accion-tabla tooltipsC" data-toggle="modal" data-target="#modalEditar_{{ $cupon->id }}" title="Editar este registro" id="open">
                                             <i class="fa fa-fw fa-pencil"></i>
                                         </button>
                                         @include('admin.cupon.editar')
-                                        <form action="{{route('eliminar_producto', ['id' => $cupon->id])}}" class="form-eliminar d-inline" method="POST">
+                                        <form action="{{route('eliminar_cupon', ['id' => $cupon->id])}}" class="form-eliminar d-inline" method="POST">
                                             @csrf @method("delete")
                                             <button type="submit" class="btn-accion-tabla eliminar tooltipsC" title="Eliminar este registro">
                                                 <i class="fa fa-fw fa-trash text-danger"></i>

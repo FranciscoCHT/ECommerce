@@ -14,7 +14,7 @@ class AddedEstado extends Migration
     public function up()
     {
         Schema::table('oferta', function (Blueprint $table) {
-            $table->boolean('estado')->nullable();
+            $table->integer('estado')->nullable();
         });
     }
 

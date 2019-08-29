@@ -18,8 +18,8 @@ class CreartablaDetalleVenta extends Migration
             $table->integer('cantidad');
             $table->integer('subtotal');
             $table->integer('precio_venta_unitario');
-            $table->unsignedInteger('producto_id');
-            $table->unsignedInteger('venta_id');
+            $table->unsignedBigInteger('producto_id');
+            $table->unsignedBigInteger('venta_id');
             $table->foreign('producto_id')->references('id')->on('producto')->onDelete('restrict')->onUpdate('restrict');
             $table->foreign('venta_id')->references('id')->on('venta')->onDelete('restrict')->onUpdate('restrict');
             $table->charset = 'utf8mb4';

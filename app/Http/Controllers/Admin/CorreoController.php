@@ -17,7 +17,7 @@ class CorreoController extends Controller
      */
     public function index(/*$nombre, $pass = false*/)
         {
-            $correos = Correo::with('empresa')->orderBy('id')->get();
+            $correos = Correo::with('empresa')->orderBy('id', 'desc')->get();
             $empresas = Empresa::orderBy('id')->pluck('nombre', 'id')->toArray();
             return view('admin.correo.index', compact('correos', 'empresas'));
             //return view('admin.correo.index', ['correos' => $correos]); //Se pasa un array a laravel, pero para evitar esto
@@ -42,8 +42,17 @@ class CorreoController extends Controller
          */
         public function guardar(ValidacionCorreo $request)
         {
-            Correo::create($request->all());
-            return redirect('admin/correo')->with('mensaje', 'Correo creado exitosamente.');
+            $listempresas = Empresa::orderBy('id')->get();
+            $empresas = $listempresas->first();
+            if ($listempresas->isEmpty()) {
+                $request->flash();
+                return redirect('admin/correo')->with('error', 'Los datos de la empresa no han sido configurados. Debe commpletarlos para la creación de correos.');
+            } else {
+                $data = request()->all();  
+                $data['empresa_id'] = $empresas->id;
+                Correo::create($data);
+            }
+            return redirect('admin/correo')->with('mensaje', 'Cuenta bancaria creada exitosamente.');
         }
     
         /**

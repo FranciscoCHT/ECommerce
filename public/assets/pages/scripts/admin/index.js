@@ -64,7 +64,7 @@ $(document).ready(function () {
                 }
             },
             error: function () {
-                
+                ecommerce.notificaciones('El registro no pudo ser eliminado, hay recursos usándolo.', 'Mensaje de sistema', 'error');
             }
         });
     }

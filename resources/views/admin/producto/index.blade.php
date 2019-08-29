@@ -8,6 +8,9 @@
 @section('descripcion')
     Lista de productos y creación de éstos.
 @endsection
+@section('breadcrumb')
+    <li class="active">Productos</li>
+@endsection
 
 @section("scripts")
 <script src="{{asset("assets/pages/scripts/admin/index.js")}}" type="text/javascript"></script>
@@ -27,7 +30,7 @@
                 <div>
                     <!-- Trigger the modal with a button -->
                     <button type="button" class="btn btn-block btn-success btn-md" data-toggle="modal" data-target="#modalCrear" id="open">
-                        <i class="fa fa-fw fa-plus"></i> Nuevo registro
+                        <i class="fa fa-fw fa-plus"></i> Nuevo producto
                     </button>
                     @include('admin.producto.crear')
                 </div>
@@ -45,7 +48,7 @@
                     <table class="table table-dark table-bordered table-hover table-striped" id="tabla-data">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>N°</th>
                                 <th>Nombre</th>
                                 <th>Descripción</th>
                                 <th>Estado</th>
@@ -58,17 +61,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($productos as $producto)
+                            @foreach ($productos as $index => $producto)
                                 <tr>
-                                    <td>{{$producto->id}}</td>
+                                    <td>{{$index+1}}</td>
                                     <td>{{$producto->nombre}}</td>
                                     <td>{{$producto->descripcion}}</td>
                                     <td>@if ($producto->estado === 1) Activo @elseif ($producto->estado === 0) Inactivo @endif</td>
                                     <td>{{$producto->stock}}</td>
-                                    <td>{{$producto->categoria->nombre}}</td>
+                                    <td>@if ($producto->categoria == null) Sin categoría @else {{$producto->categoria->nombre}} @endif</td>
                                     <td align="right">${{number_format($producto->precio, 0, '', '.')}}</td>
                                     <td align="right">${{number_format($producto->precio_oferta, 0, '', '.')}}</td>
-                                    <td>{{$producto->fecha_modificacion}}</td>
+                                    <td>@if ($producto->fecha_modificacion == null) Sin modificación @else {{$producto->fecha_modificacion ? date('d-m-Y H:i', strtotime($producto->fecha_modificacion)) : ''}} @endif</td>
                                     <td>
                                         <!-- Trigger the modal with a button -->
                                         <button type="submit" class="btn-accion-tabla tooltipsC" data-toggle="modal" data-target="#modalEditar_{{ $producto->id }}" title="Editar este registro" id="open">

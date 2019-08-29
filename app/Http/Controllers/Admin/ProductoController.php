@@ -17,8 +17,8 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        $productos = Producto::with('categoria')->orderBy('id')->get();
-        $categorias = Categoria::orderBy('id')->pluck('nombre', 'id')->toArray();
+        $productos = Producto::with('categoria')->orderBy('id', 'desc')->get();
+        $categorias = Categoria::where('id', '!=' , 0)->orderBy('id', 'desc')->pluck('nombre', 'id')->toArray();
         // foreach ($categorias as $categoria) {            //
         //     $data[$categoria->id] = $categoria->nombre   // Esto es lo mismo que hacer pluck()
         // }                                                //
@@ -81,6 +81,7 @@ class ProductoController extends Controller
     public function actualizar(ValidacionProducto $request, $id)
     {
         Producto::findOrFail($id)->update($request->all());
+        date_default_timezone_set('America/Santiago');
         Producto::findOrFail($id)->update(['fecha_modificacion' => now()]);
         return redirect('admin/producto')->with('mensaje', 'Producto actualizado exitosamente.');
     }

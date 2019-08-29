@@ -16,7 +16,7 @@ class OfertaController extends Controller
      */
     public function index(/*$nombre, $pass = false*/)
         {
-            $ofertas = Oferta::orderBy('id')->get();
+            $ofertas = Oferta::orderBy('id', 'desc')->get();
             return view('admin.oferta.index', compact('ofertas'));
             //return view('admin.oferta.index', ['ofertas' => $ofertas]); //Se pasa un array a laravel, pero para evitar esto
             //return view('ofertas', compact('nombre', 'pass'));            //se usa compact, el cual hace y manda el array automaticamente. 

@@ -17,7 +17,7 @@ class Cuenta_bancariaController extends Controller
      */
     public function index(/*$nombre, $pass = false*/)
         {
-            $cuenta_bancarias = Cuenta_bancaria::with('empresa')->orderBy('id')->get();
+            $cuenta_bancarias = Cuenta_bancaria::with('empresa')->orderBy('id', 'desc')->get();
             $empresas = Empresa::orderBy('id')->pluck('nombre', 'id')->toArray();
             return view('admin.cuenta_bancaria.index', compact('cuenta_bancarias', 'empresas'));
             //return view('admin.cuenta_bancaria.index', ['cuenta_bancarias' => $cuenta_bancarias]); //Se pasa un array a laravel, pero para evitar esto
@@ -42,7 +42,16 @@ class Cuenta_bancariaController extends Controller
          */
         public function guardar(ValidacionCuenta_bancaria $request)
         {
-            Cuenta_bancaria::create($request->all());
+            $listempresas = Empresa::orderBy('id')->get();
+            $empresas = $listempresas->first();
+            if ($listempresas->isEmpty()) {
+                $request->flash();
+                return redirect('admin/cuenta_bancaria')->with('error', 'Los datos de la empresa no han sido configurados. Debe commpletarlos para la creación de cuentas bancarias.');
+            } else {
+                $data = request()->all();  
+                $data['empresa_id'] = $empresas->id;
+                Cuenta_bancaria::create($data);
+            }
             return redirect('admin/cuenta_bancaria')->with('mensaje', 'Cuenta bancaria creada exitosamente.');
         }
     

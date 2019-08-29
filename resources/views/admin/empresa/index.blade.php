@@ -8,6 +8,9 @@
 @section('descripcion')
     Configuración de datos de la empresa y contacto.
 @endsection
+@section('breadcrumb')
+    <li class="active">Empresa</li>
+@endsection
 
 @section("scripts")
 <script src="{{asset("assets/pages/scripts/admin/index.js")}}" type="text/javascript"></script>

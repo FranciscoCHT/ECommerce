@@ -16,7 +16,7 @@ class CuponController extends Controller
      */
     public function index(/*$nombre, $pass = false*/)
         {
-            $cupons = Cupon::orderBy('id')->get();
+            $cupons = Cupon::orderBy('id', 'desc')->get();
             return view('admin.cupon.index', compact('cupons'));
             //return view('admin.cupon.index', ['cupons' => $cupons]); //Se pasa un array a laravel, pero para evitar esto
             //return view('cupons', compact('nombre', 'pass'));            //se usa compact, el cual hace y manda el array automaticamente. 
@@ -39,9 +39,24 @@ class CuponController extends Controller
          * @return \Illuminate\Http\Response
          */
         public function guardar(ValidacionCupon $request)
-        {
-            Cupon::create($request->all());
-            return redirect('admin/cupon')->with('mensaje', 'Cupon creado exitosamente.');
+        {   
+            date_default_timezone_set('America/Santiago');
+            if ($request->estado == '1') {
+                $existeCuponActivo = Cupon::where('nombre', $request->nombre)->where('estado', 1)->exists();
+                if ($existeCuponActivo) {
+                    $request->flash();
+                    return redirect('admin/cupon')->with('error', 'Ya existe un cupón activo con los datos proporcionados.');
+                } else {
+                    $data = request()->all();  
+                    $data['fecha_creacion'] = now();
+                    Cupon::create($data);
+                }
+            } else {
+                $data = request()->all();  
+                $data['fecha_creacion'] = now();
+                Cupon::create($data);
+            }
+            return redirect('admin/cupon')->with('mensaje', 'Cupón creado exitosamente.');
         }
     
         /**
@@ -76,8 +91,17 @@ class CuponController extends Controller
          */
         public function actualizar(ValidacionCupon $request, $id)
         {
-            Cupon::findOrFail($id)->update($request->all());
-            return redirect('admin/cupon')->with('mensaje', 'Cupon actualizado exitosamente.');
+            if ($request->estado == '1') {
+                $existeCuponActivo = Cupon::where('nombre', $request->nombre)->where('estado', 1)->exists();
+                if ($existeCuponActivo) {
+                    return redirect('admin/cupon')->with('error', 'Ya existe un cupón activo de este registro a modificar.');
+                } else {
+                    Cupon::findOrFail($id)->update($request->all());
+                }
+            } else {
+                Cupon::findOrFail($id)->update($request->all());
+            }
+            return redirect('admin/cupon')->with('mensaje', 'Cupón actualizado exitosamente.');
         }
     
         /**

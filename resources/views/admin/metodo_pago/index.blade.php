@@ -8,10 +8,15 @@
 @section('descripcion')
     Lista de métodos de pago y creación de éstos.
 @endsection
+@section('breadcrumb')
+    <li class="active">Métodos de pago</li>
+@endsection
 
 @section("scripts")
 <script src="{{asset("assets/pages/scripts/admin/index.js")}}" type="text/javascript"></script>
 <script src="{{asset("assets/pages/scripts/admin/crear.js")}}" type="text/javascript"></script>
+<script src="{{asset("assets/$theme/bower_components/select2/dist/js/select2.full.min.js")}}"></script>
+<script src="{{asset("assets/pages/scripts/admin/initSelect2.js")}}" type="text/javascript"></script>
 @endsection
 
 @section('contenido')
@@ -31,9 +36,9 @@
                         <div>
                             <!-- Trigger the modal with a button -->
                             <button type="button" class="btn btn-block btn-success btn-md" data-toggle="modal" data-target="#modalCrear" id="open">
-                                <i class="fa fa-fw fa-plus"></i> Nuevo registro
+                                <i class="fa fa-fw fa-plus"></i> Nuevo método pago
                             </button>
-                            @include('admin.usuario.crear')
+                            @include('admin.metodo_pago.crear')
                         </div>
                     </div>
                 </div>
@@ -41,18 +46,18 @@
                     <table class="table table-dark table-bordered table-hover table-striped" id="tabla-data">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>N°</th>
                                 <th>Nombre</th>
                                 <th>Estado</th>
                                 <th class="width70">Acción</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($metodo_pagos as $metodo_pago)
+                            @foreach ($metodo_pagos as $index => $metodo_pago)
                                 <tr>
-                                    <td>{{$metodo_pago->id}}</td>
+                                    <td>{{$index+1}}</td>
                                     <td>{{$metodo_pago->nombre}}</td>
-                                    <td>{{$metodo_pago->estado}}</td>
+                                    <td>@if ($metodo_pago->estado === 1) Activo @elseif ($metodo_pago->estado === 0) Inactivo @endif</td>
                                     <td>
                                         <!-- Trigger the modal with a button -->
                                         <button type="submit" class="btn-accion-tabla tooltipsC" data-toggle="modal" data-target="#modalEditar_{{ $metodo_pago->id }}" title="Editar este registro" id="open">

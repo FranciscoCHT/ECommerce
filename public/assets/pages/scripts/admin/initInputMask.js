@@ -1,5 +1,5 @@
- $(function () {
-     $(this).find('.precioMask').inputmask({
+$(function () {
+    $(this).find('.precioMask').inputmask({
          alias: 'numeric',
          prefix: "$ ",
          groupSeparator: '.', 
@@ -13,9 +13,9 @@
          showMaskOnHover: false,
          showMaskOnFocus: false,
          clearMaskOnLostFocus: true
-     });
+    });
 
-     $(this).find('.porcentajeMask').inputmask("decimal", {
+    $(this).find('.porcentajeMask').inputmask("decimal", {
         suffix: " %",
         min: 0,
         max: 100,
@@ -37,15 +37,18 @@
         autoUnmask: true, 
         removeMaskOnSubmit: true,
         rightAlign: false,
-        clearMaskOnLostFocus:true,
+        clearMaskOnLostFocus: true,
         showMaskOnHover: false,
         showMaskOnFocus: false,
         onUnMask: function(maskedValue, unmaskedValue) {
-            console.log(unmaskedValue);
             var digito = unmaskedValue[unmaskedValue.length-1];
             var rutSinDigito = unmaskedValue.substring(0, unmaskedValue.length-1);
             maskFinal = rutSinDigito + "-" + digito;
-            return maskFinal;
+            if (maskFinal == "-undefined") {
+                return;
+            } else {
+                return maskFinal;
+            }
         }
     });
 });
@@ -54,11 +57,3 @@
 // $(document).ready(function(){
 //     $(this).find('.precioMask').inputmask();
 // });
-
-// $('.onShowCrearMask').on('show.bs.modal', function () {
-//     $(this).find('.precioMask').inputmask('decimal',{rightAlign: true});
-// })
-
-// $('.onShowEditarMask').on('show.bs.modal', function () {
-//     $(this).find('.precioMask').inputmask('decimal',{rightAlign: true});
-// })

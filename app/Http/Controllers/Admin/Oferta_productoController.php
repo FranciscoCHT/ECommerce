@@ -17,8 +17,8 @@ class Oferta_productoController extends Controller
      */
     public function index()
     {
-        $ofertas = Oferta::orderBy('id')->pluck('nombre', 'id')->toArray();
-        $productos = Producto::orderBy('id')->select('id','nombre', 'descripcion')->get();
+        $ofertas = Oferta::orderBy('id', 'desc')->pluck('nombre', 'id')->toArray();
+        $productos = Producto::orderBy('id', 'desc')->select('id','nombre', 'descripcion')->get();
         return view('admin.oferta_producto.index', compact('ofertas', 'productos'));
     }
 

@@ -56,7 +56,7 @@
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="/Home"><i class="fa fa-dashboard"></i> Inicio</a></li>
-                        <li class="active">Nodos</li>
+                        @yield('breadcrumb')
                     </ol>
                 </section>
             </div>

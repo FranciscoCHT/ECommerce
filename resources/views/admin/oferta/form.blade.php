@@ -1,7 +1,7 @@
 <div class="form-group">
     <label for="nombre" class="col-lg-3 control-label requerido">Nombre</label>
     <div class="col-lg-8">
-    <input type="text" name="nombre" id="nombre" class="form-control" value="{{old('nombre')}}" autocomplete="off" required/>
+    <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ej: Oferta perros 1" value="{{old('nombre')}}" autocomplete="off" required/>
     </div>
 </div>
 <div class="form-group">
@@ -13,7 +13,7 @@
 <div class="form-group">
     <label for="fecha_inicio" class="col-lg-3 control-label">Fecha Inicio</label>
     <div class="col-lg-8 input-group date datetime" style="padding-left:15px;padding-right:15px;">
-        <input type='text' class="form-control" name="fecha_inicio" id="fecha_inicio" value="{{old('fecha_inicio')}}" autocomplete="off"/>
+        <input type='text' class="form-control" placeholder="Seleccione fecha de inicio..." name="fecha_inicio" id="fecha_inicio" value="{{old('fecha_inicio')}}" autocomplete="off"/>
         <span class="input-group-addon">
             <span class="glyphicon glyphicon-calendar"></span>
         </span>
@@ -22,7 +22,7 @@
 <div class="form-group">
     <label for="fecha_termino" class="col-lg-3 control-label">Fecha Término</label>
     <div class="col-lg-8 input-group date datetime" style="padding-left:15px;padding-right:15px;">
-        <input type='text' class="form-control" name="fecha_termino" id="fecha_termino" value="{{old('fecha_termino')}}" autocomplete="off"/>
+        <input type='text' class="form-control" placeholder="Seleccione fecha de término..." name="fecha_termino" id="fecha_termino" value="{{old('fecha_termino')}}" autocomplete="off"/>
         <span class="input-group-addon">
             <span class="glyphicon glyphicon-calendar"></span>
         </span>
@@ -31,10 +31,10 @@
 <div class="form-group">
     <label for="estado" class="col-lg-3 control-label">Estado</label>
     <div class="col-lg-8">
-        <select class="form-control" name="estado" id="estado">
-            <option value="" hidden disabled selected>Seleccione estado de la oferta...</option>
-            <option value="0" @if (old('estado') == 0 && old('estado') != null) selected="selected" @endif>Inactiva</option>
+        <select class="form-control select2 required" style="width: 100%" data-error="Escoja un estado..." data-placeholder="Seleccione estado de la oferta..." name="estado" id="estado" required>
+            <option value="" hidden disabled selected></option>
             <option value="1" @if (old('estado') == 1) selected="selected" @endif>Activa</option>
+            <option value="0" @if (old('estado') == 0 && old('estado') != null) selected="selected" @endif>Inactiva</option>
         </select>
     </div>
 </div>

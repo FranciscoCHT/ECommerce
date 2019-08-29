@@ -8,10 +8,15 @@
 @section('descripcion')
     Lista de categorías y creación de éstas.
 @endsection
+@section('breadcrumb')
+    <li class="active">Categorías</li>
+@endsection
 
 @section("scripts")
 <script src="{{asset("assets/pages/scripts/admin/index.js")}}" type="text/javascript"></script>
 <script src="{{asset("assets/pages/scripts/admin/crear.js")}}" type="text/javascript"></script>
+<script src="{{asset("assets/$theme/bower_components/select2/dist/js/select2.full.min.js")}}"></script>
+<script src="{{asset("assets/pages/scripts/admin/initSelect2.js")}}" type="text/javascript"></script>
 @endsection
 
 @section('contenido')
@@ -31,9 +36,9 @@
                         <div>
                             <!-- Trigger the modal with a button -->
                             <button type="button" class="btn btn-block btn-success btn-md" data-toggle="modal" data-target="#modalCrear" id="open">
-                                <i class="fa fa-fw fa-plus"></i> Nuevo registro
+                                <i class="fa fa-fw fa-plus"></i> Crear categoría
                             </button>
-                            @include('admin.usuario.crear')
+                            @include('admin.categoria.crear')
                         </div>
                     </div>
                 </div>
@@ -41,7 +46,7 @@
                     <table class="table table-dark table-bordered table-hover table-striped" id="tabla-data">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>N°</th>
                                 <th>Nombre</th>
                                 <th>Estado</th>
                                 <th>SKU</th>
@@ -50,11 +55,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($categorias as $categoria)
+                            @foreach ($categorias as $index => $categoria)
                                 <tr>
-                                    <td>{{$categoria->id}}</td>
+                                    <td>{{$index+1}}</td>
                                     <td>{{$categoria->nombre}}</td>
-                                    <td>{{$categoria->estado}}</td>
+                                    <td>@if ($categoria->estado === 1) Activa @elseif ($categoria->estado === 0) Inactiva @endif</td>
                                     <td>{{$categoria->sku}}</td>
                                     <td>{{$categoria->descripcion}}</td>
                                     <td>
@@ -63,7 +68,7 @@
                                             <i class="fa fa-fw fa-pencil"></i>
                                         </button>
                                         @include('admin.categoria.editar')
-                                        <form action="{{route('eliminar_producto', ['id' => $categoria->id])}}" class="form-eliminar d-inline" method="POST">
+                                        <form action="{{route('eliminar_categoria', ['id' => $categoria->id])}}" class="form-eliminar d-inline" method="POST">
                                             @csrf @method("delete")
                                             <button type="submit" class="btn-accion-tabla eliminar tooltipsC" title="Eliminar este registro">
                                                 <i class="fa fa-fw fa-trash text-danger"></i>

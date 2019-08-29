@@ -16,7 +16,7 @@ class UsuarioController extends Controller
      */
     public function index(/*$nombre, $pass = false*/)
     {
-        $usuarios = Usuario::orderBy('id')->get();
+        $usuarios = Usuario::orderBy('id', 'desc')->get();
         return view('admin.usuario.index', compact('usuarios'));
         //return view('admin.usuario.index', ['usuarios' => $usuarios]); //Se pasa un array a laravel, pero para evitar esto
         //return view('usuarios', compact('nombre', 'pass'));            //se usa compact, el cual hace y manda el array automaticamente. 

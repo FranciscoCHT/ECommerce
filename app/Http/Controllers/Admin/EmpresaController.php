@@ -16,7 +16,7 @@ class EmpresaController extends Controller
      */
     public function index(/*$nombre, $pass = false*/)
     {
-        $listempresas = Empresa::orderBy('id')->get();
+        $listempresas = Empresa::orderBy('id', 'desc')->get();
         $empresas = $listempresas->first();
         if ($listempresas->isEmpty()) {
             $id = 0;

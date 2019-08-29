@@ -1,7 +1,7 @@
 <div class="form-group">
     <label for="nombre" class="col-lg-3 control-label requerido">Nombre</label>
     <div class="col-lg-8">
-    <input type="text" name="nombre" id="nombre" class="form-control" value="{{old('nombre')}}" autocomplete="off" required/>
+    <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ej: Coca Cola 1L" value="{{old('nombre')}}" autocomplete="off" required/>
     </div>
 </div>
 <div class="form-group">
@@ -19,17 +19,17 @@
 <div class="form-group">
     <label for="estado" class="col-lg-3 control-label requerido">Estado</label>
     <div class="col-lg-8">
-        <select class="form-control" name="estado" id="estado" required>
-            <option value="" hidden disabled selected>Seleccione estado del producto...</option>
-            <option value="0" @if (old('estado') == 0 && old('estado') != null) selected="selected" @endif>Inactivo</option>
+        <select class="form-control select2search required" style="width: 100%" data-error="Escoja un estado..." data-placeholder="Seleccione estado del producto..." name="estado" id="estado" required>
+            <option value="" hidden disabled selected></option>
             <option value="1" @if (old('estado') == 1) selected="selected" @endif>Activo</option>
+            <option value="0" @if (old('estado') == 0 && old('estado') != null) selected="selected" @endif>Inactivo</option>
         </select>
     </div>
 </div>
 <div class="form-group">
     <label for="stock" class="col-lg-3 control-label requerido">Stock</label>
     <div class="col-lg-8">
-        <input type="text" name="stock" id="stock" class="form-control onlyNum" value="{{old('stock')}}" autocomplete="off" required/>
+        <input type="number" name="stock" id="stock" class="form-control onlyNum" min="0" placeholder="Ingrese el stock del producto..." value="{{old('stock')}}" autocomplete="off" required/>
     </div>
 </div>
 <div class="form-group">

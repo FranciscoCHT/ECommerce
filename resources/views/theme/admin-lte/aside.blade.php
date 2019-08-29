@@ -38,47 +38,47 @@
             <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
           </ul>
         </li>
-        <li>
+        <li @if (Route::currentRouteName() == 'usuario') class="active" @endif>
           <a href="{{route('usuario')}}">
             <i class="fa fa-user"></i> <span>Usuarios</span>
           </a>
         </li>
-        <li>
+        <li @if (Route::currentRouteName() == 'producto') class="active" @endif>
           <a href="{{route('producto')}}">
             <i class="fa fa-product-hunt"></i> <span>Productos</span>
           </a>
         </li>
-        <li>
+        <li @if (Route::currentRouteName() == 'categoria') class="active" @endif>
             <a href="{{route('categoria')}}">
               <i class="fa fa-cubes"></i> <span>Categorías</span>
             </a>
           </li>
-        <li>
+        <li @if (Route::currentRouteName() == 'oferta') class="active" @endif>
           <a href="{{route('oferta')}}">
             <i class="fa fa-percent"></i> <span>Ofertas</span>
           </a>
         </li>
-        <li>
+        <li @if (Route::currentRouteName() == 'metodo_pago') class="active" @endif>
           <a href="{{route('metodo_pago')}}">
             <i class="fa fa-money"></i> <span>Métodos de pago</span>
           </a>
         </li>
-        <li>
+        <li @if (Route::currentRouteName() == 'empresa') class="active" @endif>
           <a href="{{route('empresa')}}">
             <i class="fa fa-industry"></i> <span>Empresas</span>
           </a>
         </li>
-        <li>
+        <li @if (Route::currentRouteName() == 'cupon') class="active" @endif>
           <a href="{{route('cupon')}}">
             <i class="fa fa-gift"></i> <span>Cupones</span>
           </a>
         </li>
-        <li>
+        <li @if (Route::currentRouteName() == 'cuenta_bancaria') class="active" @endif>
           <a href="{{route('cuenta_bancaria')}}">
             <i class="fa fa-bank"></i> <span>Cuentas bancarias</span>
           </a>
         </li>
-        <li>
+        <li @if (Route::currentRouteName() == 'correo') class="active" @endif>
           <a href="{{route('correo')}}">
             <i class="fa fa-envelope"></i> <span>Correos</span>
           </a>

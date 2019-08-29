@@ -19,7 +19,7 @@ class CreartablaUsuario extends Migration
             $table->string('nombre', 50);
             $table->string('apellido', 50);
             $table->string('email', 100);
-            $table->integer('tipo')->nullable();
+            $table->string('tipo', 50);
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';
         });

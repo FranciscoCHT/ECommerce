@@ -25,8 +25,7 @@ class ValidacionUsuario extends FormRequest
     {
         return [
             'nombre' => 'required|max:50',
-            'rut' => 'required|max:50|unique:usuario,rut,' . $this->route('id'),
-            'tipo' => 'nullable'
+            'rut' => 'required|max:50|unique:usuario,rut,' . $this->route('id')
         ];
     }
 

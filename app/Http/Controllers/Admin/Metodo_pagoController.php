@@ -16,7 +16,7 @@ class Metodo_pagoController extends Controller
      */
     public function index()
     {
-        $metodo_pagos = Metodo_pago::orderBy('id')->get();
+        $metodo_pagos = Metodo_pago::orderBy('id', 'desc')->get();
         return view('admin.metodo_pago.index', compact('metodo_pagos'));
     }
 

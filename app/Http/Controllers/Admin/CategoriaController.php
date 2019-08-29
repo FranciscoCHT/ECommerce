@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ValidacionCategoria;
 use App\Models\Admin\Categoria;
+use App\Models\Admin\Producto;
 
 class CategoriaController extends Controller
 {
@@ -16,7 +17,7 @@ class CategoriaController extends Controller
      */
     public function index(/*$nombre, $pass = false*/)
         {
-            $categorias = Categoria::orderBy('id')->get();
+            $categorias = Categoria::where('id', '!=' , 0)->orderBy('id', 'desc')->get();
             return view('admin.categoria.index', compact('categorias'));
             //return view('admin.categoria.index', ['categorias' => $categorias]); //Se pasa un array a laravel, pero para evitar esto
             //return view('categorias', compact('nombre', 'pass'));            //se usa compact, el cual hace y manda el array automaticamente. 
@@ -90,12 +91,13 @@ class CategoriaController extends Controller
         {
             if ($request->ajax()) {
                 if (Categoria::destroy($id)) {
+                    Producto::where('categoria_id', null)->update(['categoria_id' => 0]);
                     return response()->json(['mensaje' => 'ok']);
                 } else {
                     return response()->json(['mensaje' => 'ng']);
                 }
             } else {
-                //abort(404);
+                abort(404);
             }
         }
 }

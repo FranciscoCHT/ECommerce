@@ -16,7 +16,7 @@ class CreartablaCorreo extends Migration
         Schema::create('correo', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('email', 100);
-            $table->unsignedInteger('empresa_id');
+            $table->unsignedBigInteger('empresa_id');
             $table->foreign('empresa_id')->references('id')->on('empresa')->onDelete('restrict')->onUpdate('restrict');
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';
