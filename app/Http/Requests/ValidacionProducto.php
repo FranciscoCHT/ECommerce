@@ -28,7 +28,7 @@ class ValidacionProducto extends FormRequest
             'fecha_modificacion' => 'nullable',
             'descripcion' => 'nullable',
             'precio_oferta' => 'nullable',
-            'foto' => 'nullable'
+            'imgPrincipal' => 'nullable'
         ];
     }
 }

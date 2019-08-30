@@ -2,6 +2,7 @@ $(document).ready(function () {
     $("#tabla-data").on('submit', '.form-eliminar', function () {
         event.preventDefault();
         const form = $(this);
+        const table = $("#tabla-data");
         swal({
             title: '¿ Está seguro que desea eliminar el registro ?',
             text: "Esta acción no se puede deshacer!",
@@ -12,7 +13,7 @@ $(document).ready(function () {
             },
         }).then((value) => {
             if (value) {
-                ajaxRequest(form);
+                ajaxRequest(form, table);
             }
         });
     });
@@ -20,6 +21,7 @@ $(document).ready(function () {
     $("#tabla-data-producto").on('submit', '.form-eliminar', function () {
         event.preventDefault();
         const form = $(this);
+        const table = $("#tabla-data-producto");
         swal({
             title: '¿ Está seguro que desea eliminar el registro ?',
             text: "Esta acción no se puede deshacer!",
@@ -30,7 +32,7 @@ $(document).ready(function () {
             },
         }).then((value) => {
             if (value) {
-                ajaxRequest(form);
+                ajaxRequest(form, table);
             }
         });
     });
@@ -68,15 +70,23 @@ $(document).ready(function () {
     //     }
     // });
 
-    function ajaxRequest(form) {
+    function ajaxRequest(form, table) {
         $.ajax({
             url: form.attr('action'),
             type: 'POST',
             data: form.serialize(),
             success: function (respuesta) {
                 if (respuesta.mensaje == "ok") {
-                    form.parents('tr').remove();
+                    table.DataTable().row(form.parents('tr')).remove().draw();
                     ecommerce.notificaciones('El registro fue eliminado correctamente.', 'Mensaje de sistema', 'success');
+                } else if (respuesta.mensaje == "deacProd") {
+                    var rowActual = form.parents('tr');
+                    table.DataTable().row(rowActual).cell(rowActual.index(), 3).data("Inactivo").draw(); //Seteado a estado desactivado local en la tabla y redibujada.
+                    ecommerce.notificaciones('El producto fue desactivado correctamente.', 'Mensaje de sistema', 'success');
+                } else if (respuesta.mensaje == "deacCat") {
+                    var rowActual = form.parents('tr');
+                    table.DataTable().row(rowActual).cell(rowActual.index(), 2).data("Inactiva").draw(); //Seteado a estado desactivado local en la tabla y redibujada.
+                    ecommerce.notificaciones('La categoría fue desactivada correctamente.', 'Mensaje de sistema', 'success');
                 } else {
                     ecommerce.notificaciones('El registro no pudo ser eliminado, hay recursos usándolo.', 'Mensaje de sistema', 'error');
                 }

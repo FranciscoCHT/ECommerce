@@ -18,7 +18,7 @@ class ProductoController extends Controller
     public function index()
     {
         $productos = Producto::with('categoria')->orderBy('id', 'desc')->get();
-        $categorias = Categoria::where('id', '!=' , 0)->orderBy('id', 'desc')->pluck('nombre', 'id')->toArray();
+        $categorias = Categoria::where('id', '!=' , 0)->where('estado','!=', 0)->orderBy('id', 'desc')->pluck('nombre', 'id')->toArray();
         // foreach ($categorias as $categoria) {            //
         //     $data[$categoria->id] = $categoria->nombre   // Esto es lo mismo que hacer pluck()
         // }                                                //
@@ -95,11 +95,16 @@ class ProductoController extends Controller
     public function eliminar(Request $request, $id)
     {
         if ($request->ajax()) {
-            if (Producto::destroy($id)) {
-                return response()->json(['mensaje' => 'ok']);
+            if (Producto::findOrFail($id)->update(['estado' => 0])) {
+                return response()->json(['mensaje' => 'deacProd']);
             } else {
                 return response()->json(['mensaje' => 'ng']);
             }
+            // if (Producto::destroy($id)) {
+            //     return response()->json(['mensaje' => 'ok']);
+            // } else {
+            //     return response()->json(['mensaje' => 'ng']);
+            // }
         } else {
             //abort(404);
         }

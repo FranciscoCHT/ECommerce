@@ -17,14 +17,14 @@ class CreartablaProducto extends Migration
             $table->bigIncrements('id');
             $table->string('nombre', 50);
             $table->string('descripcion', 200)->nullable();
-            $table->string('foto', 700)->nullable();
+            $table->string('imgPrincipal', 700)->nullable();
             $table->dateTime('fecha_modificacion')->nullable();
             $table->integer('precio');
             $table->integer('precio_oferta')->nullable();
             $table->integer('estado');
             $table->integer('stock');
             $table->unsignedBigInteger('categoria_id')->nullable();
-            $table->foreign('categoria_id')->references('id')->on('categoria')->onDelete('set null')->onUpdate('restrict');
+            $table->foreign('categoria_id')->references('id')->on('categoria')->onDelete('set null')->onUpdate('cascade');
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';
         });

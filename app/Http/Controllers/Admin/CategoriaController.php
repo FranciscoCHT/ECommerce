@@ -90,12 +90,18 @@ class CategoriaController extends Controller
         public function eliminar(Request $request, $id)
         {
             if ($request->ajax()) {
-                if (Categoria::destroy($id)) {
-                    Producto::where('categoria_id', null)->update(['categoria_id' => 0]);
-                    return response()->json(['mensaje' => 'ok']);
+                if (Categoria::findOrFail($id)->update(['estado' => 0])) {
+                    Producto::where('categoria_id', $id)->update(['categoria_id' => 0]);
+                    return response()->json(['mensaje' => 'deacCat']);
                 } else {
                     return response()->json(['mensaje' => 'ng']);
                 }
+                // if (Categoria::destroy($id)) {
+                //     Producto::where('categoria_id', null)->update(['categoria_id' => 0]);
+                //     return response()->json(['mensaje' => 'ok']);
+                // } else {
+                //     return response()->json(['mensaje' => 'ng']);
+                // }
             } else {
                 abort(404);
             }
