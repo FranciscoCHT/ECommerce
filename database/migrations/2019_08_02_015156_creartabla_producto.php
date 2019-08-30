@@ -17,6 +17,7 @@ class CreartablaProducto extends Migration
             $table->bigIncrements('id');
             $table->string('nombre', 50);
             $table->string('descripcion', 200)->nullable();
+            $table->string('foto', 700)->nullable();
             $table->dateTime('fecha_modificacion')->nullable();
             $table->integer('precio');
             $table->integer('precio_oferta')->nullable();

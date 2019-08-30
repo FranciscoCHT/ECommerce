@@ -22,6 +22,7 @@
 <script src="{{asset("assets/pages/scripts/admin/initInputMask.js")}}" type="text/javascript"></script>
 <script src="{{asset("assets/$theme/bower_components/select2/dist/js/select2.full.min.js")}}"></script>
 <script src="{{asset("assets/pages/scripts/admin/initSelect2.js")}}" type="text/javascript"></script>
+<script src="{{asset("assets/pages/scripts/admin/initDataTable.js")}}" type="text/javascript"></script>
 <script type="text/javascript" src="{{asset("assets/$theme/bower_components/moment/min/moment-with-locales.min.js")}}"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 <script src="{{asset("assets/pages/scripts/admin/initDateTimePicker.js")}}" type="text/javascript"></script>
@@ -45,7 +46,7 @@
                 <div class="box-header" style="background-color:#f5f5f5;">
                     <div class="box-tools" style="position: initial;float:right;">
                         <div class="input-group input-group-md" style="width: 300px;">
-                            <input type="text" class="form-control input-md" placeholder="Buscar...">
+                            <input type="text" class="form-control input-md" id="searchData" placeholder="Buscar...">
                             <span class="glyphicon glyphicon-search form-control-feedback"></span>
                         </div>
                     </div>
@@ -54,7 +55,7 @@
                     <table class="table table-dark table-bordered table-hover table-striped" id="tabla-data">
                         <thead>
                             <tr>
-                                <th>N°</th>
+                                <th class="width70">N°</th>
                                 <th>Nombre</th>
                                 <th>Descripción</th>
                                 <th>Estado</th>

@@ -15,4 +15,9 @@ class Usuario extends Model
     {
         return $this->hasMany(Venta::class);
     }
+
+    public function galeria()
+    {
+        return $this->hasOne(Galeria::class);
+    }
 }

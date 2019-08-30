@@ -27,7 +27,8 @@ class ValidacionProducto extends FormRequest
             'nombre' => 'required|max:50|unique:producto,nombre,' . $this->route('id'),
             'fecha_modificacion' => 'nullable',
             'descripcion' => 'nullable',
-            'precio_oferta' => 'nullable'
+            'precio_oferta' => 'nullable',
+            'foto' => 'nullable'
         ];
     }
 }

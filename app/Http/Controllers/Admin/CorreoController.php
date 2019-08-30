@@ -46,13 +46,13 @@ class CorreoController extends Controller
             $empresas = $listempresas->first();
             if ($listempresas->isEmpty()) {
                 $request->flash();
-                return redirect('admin/correo')->with('error', 'Los datos de la empresa no han sido configurados. Debe commpletarlos para la creación de correos.');
+                return redirect('admin/correo')->with('error', 'Los datos de la empresa no han sido configurados. Debe completarlos para la creación de correos.');
             } else {
                 $data = request()->all();  
                 $data['empresa_id'] = $empresas->id;
                 Correo::create($data);
             }
-            return redirect('admin/correo')->with('mensaje', 'Cuenta bancaria creada exitosamente.');
+            return redirect('admin/correo')->with('mensaje', 'Correo creado exitosamente.');
         }
     
         /**

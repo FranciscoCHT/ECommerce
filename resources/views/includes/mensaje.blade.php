@@ -9,7 +9,7 @@
 @endif
 
 @if (session("error"))
-    <div class="alert alert-error alert-dismissible fadeopen fadeclose cerrar" data-auto-dismiss="3000">
+    <div class="alert alert-error alert-dismissible fadeopen fadeclose cerrar" data-auto-dismiss="10000">
         <button type="button" class="close" aria-hidden="true">&times;</button>
         <h4><i class="icon fa fa-check"></i> No se pudo completar operación</h4>
         <ul>

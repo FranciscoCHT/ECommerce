@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="{{asset("assets/$theme/bower_components/Ionicons/css/ionicons.min.css")}}">
   <!-- Select2 -->
   <link rel="stylesheet" href="{{asset("assets/$theme/bower_components/select2/dist/css/select2.min.css")}}">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="{{asset("assets/$theme/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css")}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset("assets/$theme/dist/css/AdminLTE.min.css")}}">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -104,6 +106,9 @@
     <script src="{{asset("assets/$theme/bower_components/jquery/dist/jquery.min.js")}}"></script>
     <!-- Bootstrap 3.3.7 -->
     <script src="{{asset("assets/$theme/bower_components/bootstrap/dist/js/bootstrap.min.js")}}"></script>
+    <!-- DataTables -->
+    <script src="{{asset("assets/$theme/bower_components/datatables.net/js/jquery.dataTables.min.js")}}"></script>
+    <script src="{{asset("assets/$theme/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js")}}"></script>
     <!-- SlimScroll -->
     <script src="{{asset("assets/$theme/bower_components/jquery-slimscroll/jquery.slimscroll.min.js")}}"></script>
     <!-- FastClick -->

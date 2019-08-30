@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ValidacionEmpresa extends FormRequest
+class ValidacionImagen extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class ValidacionEmpresa extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,12 +24,8 @@ class ValidacionEmpresa extends FormRequest
     public function rules()
     {
         return [
-            'rut' => 'required|max:50|unique:empresa,rut,' . $this->route('id'),
-            'nombre' => 'required|max:50|unique:empresa,nombre,' . $this->route('id'),
-            'razon_social' => 'nullable',
-            'direccion' => 'nullable',
-            'tipo' => 'nullable',
-            'logo' => 'nullable'
+            'estado' => 'nullable',
+            'nombre' => 'required|max:50|unique:imagen,nombre,' . $this->route('id')
         ];
     }
 }

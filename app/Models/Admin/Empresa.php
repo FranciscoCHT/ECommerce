@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Empresa extends Model
 {
     protected $table = "empresa";
-    protected $fillable = ['nombre', 'razon_social', 'telefono', 'direccion', 'rut', 'tipo'];
+    protected $fillable = ['nombre', 'razon_social', 'telefono', 'direccion', 'rut', 'tipo', 'logo'];
     protected $guarded = ['id'];
     public $timestamps = false;
 

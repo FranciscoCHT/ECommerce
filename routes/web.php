@@ -76,6 +76,23 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::post('oferta_producto', 'Oferta_productoController@guardar')->name('guardar_oferta_producto');
     Route::put('oferta_producto/{id}', 'Oferta_productoController@actualizar')->name('actualizar_oferta_producto');
     Route::delete('oferta_producto/{id}', 'Oferta_productoController@eliminar')->name('eliminar_oferta_producto');
+
+
+    /*Rutas USUARIO_SISTEMA*/
+    Route::get('usuario_sistema', 'Usuario_sistemaController@index')->name('usuario_sistema');
+    Route::post('usuario_sistema', 'Usuario_sistemaController@guardar')->name('guardar_usuario_sistema');
+    Route::put('usuario_sistema/{id}', 'Usuario_sistemaController@actualizar')->name('actualizar_usuario_sistema');
+    Route::delete('usuario_sistema/{id}', 'Usuario_sistemaController@eliminar')->name('eliminar_usuario_sistema');
+    /*Rutas GALERIA*/
+    Route::get('galeria', 'GaleriaController@index')->name('galeria');
+    Route::post('galeria', 'GaleriaController@guardar')->name('guardar_galeria');
+    Route::put('galeria/{id}', 'GaleriaController@actualizar')->name('actualizar_galeria');
+    Route::delete('galeria/{id}', 'GaleriaController@eliminar')->name('eliminar_galeria');
+    /*Rutas IMAGEN*/
+    Route::get('imagen', 'ImagenController@index')->name('oferta_imagen');
+    Route::post('imagen', 'ImagenController@guardar')->name('guardar_imagen');
+    Route::put('imagen/{id}', 'ImagenController@actualizar')->name('actualizar_imagen');
+    Route::delete('imagen/{id}', 'ImagenController@eliminar')->name('eliminar_imagen');
 });
 
 // Route::get('/', function () {

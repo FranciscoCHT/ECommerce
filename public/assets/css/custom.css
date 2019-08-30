@@ -132,3 +132,21 @@ select:invalid,
 select option[value=""] {
   color: #b39999;
 }
+
+.form-inline .form-group {    /*                                                                      */
+    display: block;           /*                                                                      */
+    margin-bottom: 15px;      /*                                                                      */
+}                             /* Clases para modal editar en form, debido a conflictos con DataTables */
+.form-inline .form-control {  /*                                                                      */
+    width: 100%;              /*                                                                      */
+}                             /*                                                                      */
+
+table.dataTable {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    border-collapse: collapse !important;
+}
+
+.footerTabla { /*paginator y info */
+    padding: 10px 15px 10px 20px;
+}

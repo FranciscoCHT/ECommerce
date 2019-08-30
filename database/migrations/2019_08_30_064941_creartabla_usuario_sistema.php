@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreartablaEmpresa extends Migration
+class CreartablaUsuarioSistema extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreartablaEmpresa extends Migration
      */
     public function up()
     {
-        Schema::create('empresa', function (Blueprint $table) {
+        Schema::create('usuario_sistema', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('rut', 50);
-            $table->string('nombre', 50);
-            $table->string('razon_social', 50)->nullable();
-            $table->string('tipo', 50)->nullable();
-            $table->integer('telefono');
-            $table->string('direccion', 50)->nullable();
-            $table->string('logo', 700)->nullable();
+            $table->string('nombre', 30);
+            $table->string('apellido', 50);
+            $table->string('password', 45);
+            $table->string('correo', 100);
+            $table->string('tipo', 45);
+            $table->string('estado', 45)->nullable();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';
         });
@@ -34,6 +33,6 @@ class CreartablaEmpresa extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('empresa');
+        Schema::dropIfExists('usuario_sistema');
     }
 }

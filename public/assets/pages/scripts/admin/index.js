@@ -17,6 +17,24 @@ $(document).ready(function () {
         });
     });
 
+    $("#tabla-data-producto").on('submit', '.form-eliminar', function () {
+        event.preventDefault();
+        const form = $(this);
+        swal({
+            title: '¿ Está seguro que desea eliminar el registro ?',
+            text: "Esta acción no se puede deshacer!",
+            icon: 'warning',
+            buttons: {
+                cancel: "Cancelar",
+                confirm: "Aceptar"
+            },
+        }).then((value) => {
+            if (value) {
+                ajaxRequest(form);
+            }
+        });
+    });
+
     // $(".validaRut").on( 'keypress', function(e){
     //     var keyCode = e.which;
     //    if ( (keyCode != 8 || keyCode ==32 ) && (keyCode < 48 || keyCode > 57) && (keyCode != 45 && keyCode != 75 && keyCode != 107)) { 

@@ -18,6 +18,7 @@
 <script src="{{asset("assets/$theme/bower_components/select2/dist/js/select2.full.min.js")}}"></script>
 <script src="{{asset("assets/$theme/bower_components/select2/dist/js/i18n/es.js")}}"></script>
 <script src="{{asset("assets/pages/scripts/admin/initSelect2.js")}}" type="text/javascript"></script>
+<script src="{{asset("assets/pages/scripts/admin/initDataTable.js")}}" type="text/javascript"></script>
 <script src="{{asset("assets/$theme/bower_components/inputmask/dist/jquery.inputmask.bundle.js")}}"></script>
 <script src="{{asset("assets/pages/scripts/admin/initInputMask.js")}}" type="text/javascript"></script>
 @endsection
@@ -38,18 +39,28 @@
             </div>
             <div class="box">
                 <div class="box-header" style="background-color:#f5f5f5;">
-                    <div class="box-tools" style="position: initial;float:right;">
-                        <div class="input-group input-group-md" style="width: 300px;">
-                            <input type="text" class="form-control input-md" placeholder="Buscar...">
+                    <div class="box-tools" style="position: initial;float:right;display:inline-block;">
+                        <div class="input-group input-group-md" style="width: 200px;">
+                            <input type="text" class="form-control input-md" id="searchData" placeholder="Buscar...">
                             <span class="glyphicon glyphicon-search form-control-feedback"></span>
                         </div>
                     </div>
+                    <div class="form-horizontal">
+                        <label style="display:inline-block;text-align:left;padding-left:5px;" class="control-label">Filtrar por:</label>
+                        <div class="box-tools" style="display:inline-block;padding-left:5px;">
+                            <select class="form-control selectTabla required" style="width: 100%" data-error="Escoja un estado..." data-placeholder="Filtrar por estado..." name="estadoFiltro" id="estadoFiltro">
+                                <option value="0" selected="selected">Activo</option>
+                                <option value="1">Inactivo</option>
+                            </select>
+                        </div>
+                    </div>
+                    
                 </div>
                 <div class="box-body table-responsive no-padding">
-                    <table class="table table-dark table-bordered table-hover table-striped" id="tabla-data">
+                    <table class="table table-dark table-bordered table-hover table-striped" id="tabla-data-producto">
                         <thead>
                             <tr>
-                                <th>N°</th>
+                                <th class="width70">N°</th>
                                 <th>Nombre</th>
                                 <th>Descripción</th>
                                 <th>Estado</th>
