@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ValidacionEmpresa;
 use App\Models\Admin\Empresa;
+use Illuminate\Support\Facades\File;
 
 class EmpresaController extends Controller
 {
@@ -36,10 +37,53 @@ class EmpresaController extends Controller
     public function actualizar(ValidacionEmpresa $request, $id)
     {
         if ($id == 0) {
-            Empresa::create($request->all());
+            if ($request->hasFile('logo')) {
+                $image = $request->file('logo');
+                $name = 'logo'.'.'.$image->getClientOriginalExtension();
+                $destinationPath = public_path('/imagenes/empresa');
+                File::delete(File::glob(public_path() . '/imagenes/empresa/logo.*'));
+                $image->move($destinationPath, $name);
+
+                $data = $request->except('logo');
+                $data['logo'] = $name;
+                Empresa::create($data);
+            } else {
+                $data = $request->except('logo');
+                Empresa::create($data);
+            }
         } else {
-            Empresa::findOrFail($id)->update($request->all());
+            if ($request->hasFile('logo')) {
+                $image = $request->file('logo');
+                $name = 'logo'.'.'.$image->getClientOriginalExtension();
+                $destinationPath = public_path('/imagenes/empresa');
+                File::delete(File::glob(public_path() . '/imagenes/empresa/logo.*'));
+                $image->move($destinationPath, $name);
+
+                $data = $request->except('logo');
+                $data['logo'] = $name;
+                Empresa::findOrFail($id)->update($data);
+            } else {
+                $data = $request->except('logo');
+                Empresa::findOrFail($id)->update($data);
+            }
+
+            // if(\File::exists(public_path('upload/bio.png'))){
+            //     \File::delete(public_path('upload/bio.png'));
+            // }else{
+            //     dd('File does not exists.');
+            // }
         }
-        return redirect('admin/empresa')->with('mensaje', 'Datos guardados exitosamente.');
+        return redirect('admin/empresa')->with('mensaje', 'Datos guardados exitosamente.')/*->with('pathLogo', $name)*/;
+    }
+
+    public static function getLogo()
+    {
+        $listempresas = Empresa::orderBy('id', 'desc')->get();
+        $empresas = $listempresas->first();
+        if ($listempresas->isEmpty()) {
+            return 'user.png';
+        } else {
+            return $empresas->logo;
+        }
     }
 }

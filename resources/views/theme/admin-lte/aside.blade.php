@@ -4,8 +4,8 @@
     <section class="sidebar">
       <!-- Sidebar user panel -->
       <div class="user-panel">
-        <div class="pull-left image">
-          <img src="{{asset("assets/$theme/dist/img/user2-160x160.jpg")}}" class="img-circle" alt="User Image">
+        <div class="pull-left image logoEmpresa">
+          <img src="{{asset("imagenes/empresa/".(new App\Http\Controllers\Admin\EmpresaController)->getLogo())}}" class="img-circle" style="max-width:none;" alt="Logo de empresa">
         </div>
         <div class="pull-left info">
           <p>Francisco Chacón</p>

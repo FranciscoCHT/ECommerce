@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'InicioController@index');
-
+//Route::get('', 'Admin\EmpresaController@getLogo')->name('getLogo');
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     /*Rutas USUARIO*/
     Route::get('usuario', 'UsuarioController@index')->name('usuario');

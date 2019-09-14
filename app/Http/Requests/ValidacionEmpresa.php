@@ -29,7 +29,8 @@ class ValidacionEmpresa extends FormRequest
             'razon_social' => 'nullable',
             'direccion' => 'nullable',
             'tipo' => 'nullable',
-            'logo' => 'nullable'
+            'logo' => 'nullable',
+            'logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ];
     }
 }

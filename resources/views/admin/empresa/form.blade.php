@@ -1,4 +1,4 @@
-<div class="col-lg-6">
+<div class="col-lg-4">
     <span style="color: #6a828e;font-size:16px;"><b>Datos de la empresa</b></span>
     <div style="-webkit-column-count: 1;-webkit-column-width: 300px;-webkit-column-gap: 2em;border-top: 1px solid #7eb2be;padding-bottom: 16px;padding-top: 12px; margin-bottom: 0px;">
         <div class="form-group" style="margin-bottom:10px;">
@@ -21,7 +21,7 @@
         </div>
     </div>
 </div>
-<div class="col-lg-6">
+<div class="col-lg-4">
     <span style="color: #6a828e;font-size:16px;"><b>Datos de contacto</b></span>
     <div style="-webkit-column-count: 1;-webkit-column-width: 300px;-webkit-column-gap: 2em;border-top: 1px solid #7eb2be;padding-bottom: 16px;padding-top: 12px; margin-bottom: 0px;">
         <div class="form-group" style="margin-bottom:10px;">
@@ -41,6 +41,20 @@
             <div>
                 <input type="text" name="tipo" id="tipo" class="form-control" placeholder="Ej: Accesorios, abarrotes" value="{{old('tipo', $empresas->tipo ?? '')}}" autocomplete="off"/>
             </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-4">
+    <span style="color: #6a828e;font-size:16px;"><b>Logo</b></span>
+    <div style="-webkit-column-count: 1;-webkit-column-width: 300px;-webkit-column-gap: 2em;border-top: 1px solid #7eb2be;padding-bottom: 16px;padding-top: 12px; margin-bottom: 0px;">
+        <div class="form-group" style="margin-bottom:10px;">
+            <label for="logo" class="control-label">Imagen de logo</label>
+            <div>
+                <input type="file" name="logo" id="logo" class="" value="{{old('logo', $empresas->logo ?? '')}}"/>
+            </div>
+        </div>
+        <div class="form-group" style="margin-bottom:10px;">
+            <img style="max-width:100%;max-height:100%;" src="/imagenes/empresa/{{ $empresas->logo }}"/>
         </div>
     </div>
 </div>

@@ -24,7 +24,7 @@
         <div class="col-lg-12">
             @include('includes.form-error')
             @include('includes.mensaje')
-            <form action="{{route('actualizar_empresa', ['id' => $id])}}" data-empresa="{{ $empresas }}" id="form-editar_{{$id}}" name="form-editar" class="d-inline" method="POST">
+            <form action="{{route('actualizar_empresa', ['id' => $id])}}" data-empresa="{{ $empresas }}" id="form-editar_{{$id}}" name="form-editar" class="d-inline" method="POST" enctype="multipart/form-data">
                 @csrf @method("put")
                 @include('admin.empresa.form')
                 <div class="col-lg-12">
