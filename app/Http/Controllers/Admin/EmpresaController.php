@@ -81,7 +81,7 @@ class EmpresaController extends Controller
         $listempresas = Empresa::orderBy('id', 'desc')->get();
         $empresas = $listempresas->first();
         if ($listempresas->isEmpty()) {
-            return 'user.png';
+            return 'placeholder.png';
         } else {
             return $empresas->logo;
         }

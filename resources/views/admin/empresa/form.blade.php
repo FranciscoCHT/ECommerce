@@ -54,7 +54,7 @@
             </div>
         </div>
         <div class="form-group" style="margin-bottom:10px;">
-            <img style="max-width:100%;max-height:100%;" src="/imagenes/empresa/{{ $empresas->logo }}"/>
+            <img style="max-width:100%;max-height:100%;" src="{{asset("imagenes/empresa/".(new App\Http\Controllers\Admin\EmpresaController)->getLogo())}}"/>
         </div>
     </div>
 </div>
