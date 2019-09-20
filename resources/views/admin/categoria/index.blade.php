@@ -12,13 +12,13 @@
     <li class="active">Categorías</li>
 @endsection
 
-@section("scripts")
+@push("scripts")
 <script src="{{asset("assets/pages/scripts/admin/index.js")}}" type="text/javascript"></script>
 <script src="{{asset("assets/pages/scripts/admin/crear.js")}}" type="text/javascript"></script>
 <script src="{{asset("assets/$theme/bower_components/select2/dist/js/select2.full.min.js")}}"></script>
 <script src="{{asset("assets/pages/scripts/admin/initSelect2.js")}}" type="text/javascript"></script>
 <script src="{{asset("assets/pages/scripts/admin/initDataTable.js")}}" type="text/javascript"></script>
-@endsection
+@endpush
 
 @section('contenido')
     <div class="row">

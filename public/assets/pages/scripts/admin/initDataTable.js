@@ -53,7 +53,7 @@ $(function () {
     });
     
 
-    var table = $(this).find('#tabla-data').DataTable({
+    var table = $(this).find('.tabla-data').DataTable({
         'paging'      : true,
         'lengthChange': false,
         'searching'   : true,

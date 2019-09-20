@@ -12,11 +12,19 @@ $(function () {
     //     });
     // }   
 
+    $('.onShowAddStock').on('show.bs.modal', function () {
+        if (!$(this).find('.select2ProductStock').hasClass("select2-hidden-accessible")) {
+            $(this).find('.select2ProductStock').select2({
+                allowClear: true
+            });
+        }
+    })
+    
     $('.onShowCrearSelect').on('show.bs.modal', function () {
         if (!$(this).find('.select2').hasClass("select2-hidden-accessible")) {
             $(this).find('.select2').select2({
                 allowClear: true,
-                minimumResultsForSearch: Infinity
+                minimumResultsForSearch: Infinity // Para que no muestre el buscador del SelectBox
             });
         }
         if (!$(this).find('.select2search').hasClass("select2-hidden-accessible")) {
@@ -30,7 +38,7 @@ $(function () {
         if (!$(this).find('.select2').hasClass("select2-hidden-accessible")) {
             $(this).find('.select2').select2({
                 allowClear: true,
-                minimumResultsForSearch: Infinity
+                minimumResultsForSearch: Infinity // Para que no muestre el buscador del SelectBox
             });
         }
         if (!$(this).find('.select2search').hasClass("select2-hidden-accessible")) {
@@ -42,7 +50,7 @@ $(function () {
 
     if (!$(this).find('.selectTabla').hasClass("select2-hidden-accessible")) {
         $(this).find('.selectTabla').select2({
-            minimumResultsForSearch: Infinity
+            minimumResultsForSearch: Infinity // Para que no muestre el buscador del SelectBox
         });
     }
 })

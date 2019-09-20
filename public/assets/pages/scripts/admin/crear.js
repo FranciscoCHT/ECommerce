@@ -8,6 +8,12 @@ $('.onShowCrear').on('show.bs.modal', function () {
     validator.resetForm();
 })
 
+$('.onShowAddStock').on('show.bs.modal', function () { //Reseteo de formulario al presionar el botón correspondiente
+    $('#form-addStock').trigger('reset');              //y luego volver a inicializar el validador.
+    var validator = $('#form-addStock').validate();
+    validator.resetForm();
+})
+
 $('.validarEdicion').on('shown.bs.modal', function () {
     var idForm = this.id.split('_');
     idForm = idForm[1];

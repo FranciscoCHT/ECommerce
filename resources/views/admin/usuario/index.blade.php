@@ -12,7 +12,7 @@
     <li class="active">Usuarios</li>
 @endsection
 
-@section("scripts")
+@push("scripts")
 <script src="{{asset("assets/pages/scripts/admin/index.js")}}" type="text/javascript"></script>
 <script src="{{asset("assets/pages/scripts/admin/crear.js")}}" type="text/javascript"></script>
 <script src="{{asset("assets/$theme/bower_components/select2/dist/js/select2.full.min.js")}}"></script>
@@ -20,7 +20,7 @@
 <script src="{{asset("assets/pages/scripts/admin/initDataTable.js")}}" type="text/javascript"></script>
 <script src="{{asset("assets/$theme/bower_components/inputmask/dist/jquery.inputmask.bundle.js")}}"></script>
 <script src="{{asset("assets/pages/scripts/admin/initInputMask.js")}}" type="text/javascript"></script>
-@endsection
+@endpush
 
 @section('contenido')
     <div class="row">
@@ -64,7 +64,7 @@
                     </div>
                 </div>
                 <div class="box-body table-responsive no-padding">
-                    <table class="table table-dark table-bordered table-hover table-striped" id="tabla-data">
+                    <table class="table table-dark table-bordered table-hover table-striped tabla-data" id="tabla-data">
                         <thead>
                             <tr>
                                 <th class="width70">N°</th>

@@ -15,7 +15,7 @@
     <li class="active">Cupones</li>
 @endsection
 
-@section("scripts")
+@push("scripts")
 <script src="{{asset("assets/pages/scripts/admin/index.js")}}" type="text/javascript"></script>
 <script src="{{asset("assets/pages/scripts/admin/crear.js")}}" type="text/javascript"></script>
 <script src="{{asset("assets/$theme/bower_components/select2/dist/js/select2.full.min.js")}}"></script>
@@ -24,7 +24,7 @@
 <script type="text/javascript" src="{{asset("assets/$theme/bower_components/moment/min/moment-with-locales.min.js")}}"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 <script src="{{asset("assets/pages/scripts/admin/initDateTimePicker.js")}}" type="text/javascript"></script>
-@endsection
+@endpush
 
 @section('contenido')
     <div class="row">
