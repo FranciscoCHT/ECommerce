@@ -35,6 +35,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::put('producto/{id}', 'ProductoController@actualizar')->name('actualizar_producto');
     Route::delete('producto/{id}', 'ProductoController@eliminar')->name('eliminar_producto');
 
+    /*Rutas ADDSTOCK*/
+    //Route::get('producto', 'ProductoController@index')->name('producto');
+    Route::post('stock', 'AddStockController@guardar')->name('guardar_stock');
+    //Route::put('producto/{id}', 'ProductoController@actualizar')->name('actualizar_producto');
+    //Route::delete('producto/{id}', 'ProductoController@eliminar')->name('eliminar_producto');
+
     /*Rutas OFERTA*/
     Route::get('oferta', 'OfertaController@index')->name('oferta');
     Route::post('oferta', 'OfertaController@guardar')->name('guardar_oferta');

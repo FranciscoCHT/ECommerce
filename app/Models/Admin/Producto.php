@@ -25,4 +25,9 @@ class Producto extends Model
     {
         return $this->belongsToMany(Venta::class, 'detalle_venta');
     }
+
+    public function addStocks()
+    {
+        return $this->hasMany(AddStock::class, 'addstock_producto');
+    }
 }

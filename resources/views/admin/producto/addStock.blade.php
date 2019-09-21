@@ -10,13 +10,14 @@
                 <h5 class="modal-title">Añadir stock</h5>
             </div>
             <div class="modal-body">
-                <form action="{{route('guardar_producto')}}" id="form-addStock" name="form-addStock" class="form-horizontal d-inline" method="POST">
+                <form id="form-addStock" name="form-addStock" class="form-horizontal d-inline" method="POST">
                     @csrf
                     <div class="box-body">
                         @include('admin.producto.addStockForm')
                     </div>
                     <div class="box-footer">
-                        @include('includes.boton-form-crear')
+                        <button type="reset" class="btn btn-default btn-sm pull-left" id="cancelado" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success btn-sm pull-right" id="guardarStock">Guardar</button>
                     </div>
                 </form>
             </div>
