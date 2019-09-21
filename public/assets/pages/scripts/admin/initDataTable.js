@@ -61,7 +61,7 @@ $(function () {
     optionTablas.aoColumnDefs = [
         { "searchable": false, "orderable": false, "targets": -1 },
     ];
-    var table = $(this).find('.tabla-data').DataTable(optionTablas)
+    var table = $(this).find('.tabla-data').DataTable(optionTablas)  // Para tablas generales, se utiliza una clase, debido a que pueden haber múltiples tablas en misma vista.
 
     $(".dataTables_filter").hide();             /**/
     $('#searchData').keyup(function(){          /*  Esconde el search box de DataTable y se le asigna a uno personalizado */
@@ -73,7 +73,7 @@ $(function () {
     optionAddstock.aoColumnDefs = [
         { "searchable": false, "orderable": false, "targets": -1 },
         { "visible": false, "targets": 1 },
-        { "targets": 3, "className": 'text-right' },
+        { "targets": 3, "className": 'text-right', "render": $.fn.dataTable.render.number( '.', ',', 0, '$ ' ) },
         { "targets": 4, "className": 'text-right' }
     ];
     var tableAddstock = $(this).find('#tabla-data-stock').DataTable(optionAddstock)

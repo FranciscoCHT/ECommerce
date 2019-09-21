@@ -166,7 +166,7 @@ table.dataTable {
 .titleModalStock {
     padding-left:10px;
     color: #6a828e;
-    font-size:16px;
+    font-size:14px;
     letter-spacing: 1px;
 }
 
@@ -180,6 +180,6 @@ table.dataTable {
 }
 
 .boxModalStock {
-    border: 1px solid #f4f4f4; 
+    border: 1px solid #eaeaea; 
     margin-bottom:10px;
 }

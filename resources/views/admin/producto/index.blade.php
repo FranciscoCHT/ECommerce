@@ -66,7 +66,7 @@
                     
                 </div>
                 <div class="box-body table-responsive no-padding">
-                    <table class="table table-dark table-bordered table-hover table-striped" id="tabla-data-producto">
+                    <table class="table table-dark table-bordered table-hover table-striped table-button-del" id="tabla-data-producto">
                         <thead>
                             <tr>
                                 <th class="width70">N°</th>

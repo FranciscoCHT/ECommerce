@@ -2,7 +2,7 @@
     <div style="background-color:#eeeeee;"><span class="titleModalStock"><b>Seleccione un producto</b></span></div>
     <div class="form-group bodyModalStock" style="padding-top:12px;">
         <div class="col-lg-12">
-            <select class="form-control select2ProductStock required" style="width: 100%" data-error="Escoja un producto..." data-placeholder="Buscar producto..." name="producto" id="producto" required>
+            <select class="form-control select2ProductStock" style="width: 100%" data-error="Escoja un producto..." data-placeholder="Buscar producto..." name="producto" id="producto">
                 <option value="" selected disabled hidden></option>
                 @foreach($productos as $index => $producto)
                     <option data-preciostock="{{$producto->precio}}" data-namestock="{{$producto->nombre}}" value="{{$producto->id}}" @if (old('producto') == $producto->id) selected="selected" @endif>{{$producto->nombre}} - {{str_limit($producto->descripcion, 30, '...')}}</option>
