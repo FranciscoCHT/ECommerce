@@ -11,7 +11,9 @@
 @section('breadcrumb')
     <li class="active">Productos</li>
 @endsection
-
+@section('styles')
+    <link rel="stylesheet" href="{{asset("assets/js/dropzone/basic.css")}}">
+@endsection
 @push("scripts")
 <script src="{{asset("assets/pages/scripts/admin/index.js")}}" type="text/javascript"></script>
 <script src="{{asset("assets/pages/scripts/admin/crear.js")}}" type="text/javascript"></script>
@@ -21,6 +23,7 @@
 <script src="{{asset("assets/pages/scripts/admin/initDataTable.js")}}" type="text/javascript"></script>
 <script src="{{asset("assets/$theme/bower_components/inputmask/dist/jquery.inputmask.bundle.js")}}"></script>
 <script src="{{asset("assets/pages/scripts/admin/initInputMask.js")}}" type="text/javascript"></script>
+<script src="{{asset("assets/js/dropzone/dropzone.js")}}"></script>
 @endpush
 
 @section('contenido')
@@ -44,6 +47,15 @@
                         <i class="fa fa-fw fa-plus"></i> Agregar Stock
                     </button>
                     @include('admin.producto.addStock')
+                </div>
+            </div>
+            <div class="top-boton-right">
+                <div>
+                    <!-- Trigger the modal with a button -->
+                    <button type="button" class="btn btn-block btn-primary btn-md" data-toggle="modal" data-target="#modalCrearGaleria" id="open">
+                        <i class="fa fa-fw fa-plus"></i> Crear Galería
+                    </button>
+                    @include('admin.producto.galeria.crearGaleria')
                 </div>
             </div>
             <div class="box">

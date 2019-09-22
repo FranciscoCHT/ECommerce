@@ -13,7 +13,7 @@ class ValidacionGaleria extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,9 +24,9 @@ class ValidacionGaleria extends FormRequest
     public function rules()
     {
         return [
-            'fecha_modificacion' => 'nullable',
-            'estado' => 'nullable',
-            'producto_id' => 'required|max:50|unique:galeria,producto_id,' . $this->route('id')
+            // 'fecha_modificacion' => 'nullable',
+            // 'estado' => 'nullable',
+            // 'producto_id' => 'required|max:50|unique:galeria,producto_id,' . $this->route('id')
         ];
     }
 }
