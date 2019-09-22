@@ -20,6 +20,7 @@ class CreartablaGaleria extends Migration
             $table->boolean('estado')->nullable();
             $table->unsignedBigInteger('producto_id');
             $table->foreign('producto_id')->references('id')->on('producto')->onDelete('restrict')->onUpdate('restrict');
+            $table->unique('producto_id');
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';
         });

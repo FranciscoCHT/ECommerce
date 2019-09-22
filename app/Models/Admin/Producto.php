@@ -30,4 +30,9 @@ class Producto extends Model
     {
         return $this->hasMany(AddStock::class, 'addstock_producto');
     }
+
+    public function galeria()
+    {
+        return $this->hasOne(Galeria::class, 'producto_galeria');
+    }
 }

@@ -20,4 +20,9 @@ class Galeria extends Model
     {
         return $this->hasMany(Imagen::class);
     }
+
+    public function producto()
+    {
+        return $this->belongsTo(Producto::class);
+    }
 }
