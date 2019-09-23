@@ -62,7 +62,7 @@ class GaleriaController extends Controller
         // } else {
         // 	return Response::json('error', 400);
         // }
-        $input = $request->file('file')->getClientOriginalName();
+        $input = $request->all();
         return $input;
  
     }

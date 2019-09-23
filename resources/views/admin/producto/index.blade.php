@@ -12,7 +12,7 @@
     <li class="active">Productos</li>
 @endsection
 @section('styles')
-    <link rel="stylesheet" href="{{asset("assets/js/dropzone/basic.css")}}">
+    <link rel="stylesheet" href="{{asset("assets/js/dropzone/dropzone.min.css")}}">
 @endsection
 @push("scripts")
 <script src="{{asset("assets/pages/scripts/admin/index.js")}}" type="text/javascript"></script>

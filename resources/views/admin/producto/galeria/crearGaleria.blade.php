@@ -10,14 +10,14 @@
                 <h5 class="modal-title">Crear galería</h5>
             </div>
             <div class="modal-body">
-                <form id="form-crearGaleria" name="form-crearGaleria" class="form-horizontal d-inline classDZ" method="POST" action="{{route('guardar_galeria')}}" enctype="multipart/form-data">
+                <form id="form-crearGaleria" name="form-crearGaleria" class="form-horizontal d-inline" method="POST" action="{{route('guardar_galeria')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="box-body">
                         @include('admin.producto.galeria.formGaleria')
                     </div>
                     <div class="box-footer">
                         <button type="reset" class="btn btn-default btn-sm pull-left" id="cancelado" data-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-success btn-sm pull-right" id="guardarGaleria">Guardar</button>
+                        <button type="button" class="btn btn-success btn-sm pull-right" id="guardarGaleria">Crear</button>
                     </div>
                 </form>
             </div>
