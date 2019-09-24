@@ -1,8 +1,8 @@
 <!-- HTML heavily inspired by http://blueimp.github.io/jQuery-File-Upload/ -->
-<div class="boxModalStock">
+<div class="col-xs-9 boxModalStock" style="margin-left:15px;" {{--style="margin-right: calc(4.166666% - 15px);"--}}>
     <div style="background-color:#eeeeee;"><span class="titleModalStock"><b>Seleccione un producto</b></span></div>
     <div class="form-group bodyModalStock" style="padding-top:12px;">
-        <div class="col-lg-12">
+        <div class="col-xs-12">
             <select class="form-control select2ProductStock" style="width: 100%" data-error="Escoja un producto..." data-placeholder="Buscar producto..." name="productoGal" id="productoGal">
                 <option value="" selected disabled hidden></option>
                 @foreach($productos as $index => $producto)
@@ -10,11 +10,15 @@
                 @endforeach
             </select>
         </div>
-        <label class="switch"><input type="checkbox" /><div></div>
-        </label>
     </div>
 </div>
-<div class="dropzone dropzone-previews needsclick dz-clickable" id="dZUpload" name="dZUpload">
+<div class="col-xs-2 boxModalStock" style="text-align:center; margin-left:10px; ">
+    <div style="background-color:#eeeeee;"><span class="titleModalStock"><b>Estado</b></span></div>
+    <div class="form-group bodyModalStock" style="padding-top:12px;margin:auto;">
+        <input class="toggle" id="estadoGal" type="checkbox" />
+    </div>
+</div>
+<div class="col-xs-12 dropzone dropzone-previews needsclick dz-clickable" id="dZUpload" name="dZUpload">
 
 </div>
 
@@ -82,6 +86,7 @@
         $('#form-crearGaleria').submit(function(e){       
           //  e.preventDefault();
         })
+        
         Dropzone.autoDiscover = false;      // Para que no asocie el plugin DZ a otras instancias, y asignar manualmente.
         var token = $('meta[name="csrf-token"]').attr('content');
         $("#dZUpload").dropzone({
@@ -102,10 +107,12 @@
                     e.stopPropagation();
                     dzClosure.processQueue();
                 });
-                
+
+
                 //send all the form data along with the files:
                 this.on("sendingmultiple", function(data, xhr, formData) {
                     formData.append("productoGal", jQuery("#productoGal").val());
+                    formData.append("estadoGal", jQuery("#estadoGal").prop('checked'));
                 });
             },
             success: function (file, response) {
