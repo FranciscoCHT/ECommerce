@@ -62,7 +62,7 @@
 
 @push('scripts')
     <script type="text/javascript">
-
+        var cont = 0;
         $(document).ready(function(){                               
             $(this).find('#producto').change(function(){                            // Función para cambiar el campo de precio
                 var id = $(this).find('option:selected').val();                     // al seleccionar algun producto de la lista.
@@ -70,7 +70,6 @@
                 $('#precioStock').val(precio);
             })
             
-            var cont = 0;
             var tablaStock = $('#tabla-data-stock').DataTable();
             evaluar();
             $('#form-addStock').submit(function(e){                                 // Se toma el evento de submit del form, y se hace una
@@ -134,6 +133,7 @@
         $("#modalAddStock").on("hidden.bs.modal", function () {     // Función encargada de limpiar, resetear y redibujar el modal al cerrarse.
             var tablaStock = $('#tabla-data-stock').DataTable();
             limpiar();
+            cont = 0;
             tablaStock.clear().draw();
             evaluar();
         })
@@ -151,6 +151,7 @@
             var tablaStock = $('#tabla-data-stock').DataTable();    // el botón para guardar se bloquea, cuando existan registros
             if(!tablaStock.data().count()) {                        // se vuelve a evaluar y si hay registros, se activa el botón de guardado.
                 $("#guardarStock").prop('disabled', true);
+                cont = 0;   //Si no hay prod, reset contador a 0.
             } else {
                 $("#guardarStock").prop('disabled', false);
             }

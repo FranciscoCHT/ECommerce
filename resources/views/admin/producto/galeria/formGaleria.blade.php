@@ -21,7 +21,6 @@
 <div class="col-xs-12 dropzone dropzone-previews needsclick dz-clickable" id="dZUpload" name="dZUpload">
 
 </div>
-<div id="uplo"></div>
 {{-- <div id="actions" class="row">
     <div class="col-lg-11">
         <!-- The fileinput-button span is used to style the file input field as button -->
@@ -94,7 +93,7 @@
 
         // Para que no asocie el plugin DZ a otras instancias, y asignar manualmente.
         Dropzone.autoDiscover = false;  
-
+        
         var token = $('meta[name="csrf-token"]').attr('content');
         $("#dZUpload").dropzone({
             url: "galeria",
@@ -107,27 +106,45 @@
             maxFilesize: 2,
             addRemoveLinks: true,
             init: function() {
-                dzClosure = this; // Makes sure that 'this' is understood inside the functions below.
+                dzClosure = this; // Makes sure that 'this' is understood inside the functions below. Instancia del plugin.
 
                 // for Dropzone to process the queue (instead of default form behavior) -> Prevenir el submit del form.
                 document.getElementById("guardarGaleria").addEventListener("click", function(e) {
                     e.preventDefault();     // Make sure that the form isn't actually being sent.
                     e.stopPropagation();
-                    if (jQuery("#productoGal").val() != null) {
-                        dzClosure.processQueue();
-                    } else {
+                    if (jQuery("#productoGal").val() == null) {
                         ecommerce.notificaciones('No se ha seleccionado un producto. Seleccione uno y vuelva a intentarlo.', 'Mensaje de sistema', 'error');
+                    } else if (dzClosure.files.length == 0) {
+                        ecommerce.notificaciones('No se han insertado imágenes. Inserte al menos una y vuelva a intentarlo.', 'Mensaje de sistema', 'error');
+                    } else {
+                        dzClosure.processQueue();
                     }
                 });
                 
                 //Imprime el mensaje de error que haya ocurrido al subir foto.
-                this.on("error", function(file, message) { 
-                    if (message == 'errorExists') {
-                        ecommerce.notificaciones('La galería de este producto ya existe.', 'Mensaje de sistema', 'error');
-                        this.removeAllFiles();
-                    } else {
+                this.on("error", function(file, message) {  //error: se realiza por cada imagen.
+                    if (message != 'errorExists') {         //Máximo de foto excedido
                         ecommerce.notificaciones(message, 'Mensaje de sistema', 'error');
                         this.removeFile(file); 
+                    }
+                });
+
+                //En caso de que se haga el submit de los archivos y desde el servidor se responde que
+                //ya existe la galería, o algún otro error desde Servidor, se copian todos los archivos
+                //y se vuelven a colocar en dropzone. Si no se hace esto, los archivos quedan con error
+                //de subida, y no se puede reinicializar la subida.
+                this.on('errormultiple',function(files, response){  //errormultiple: se realiza una vez por todas las imagenes.
+                    if (response == 'errorExists') {                //Se pregunta si el error es de que la galería ya existe. Si no se
+                        var dropzoneFilesCopy = files.slice(0);     //hace el IF, se entra en un loop por conflicto con otros errores.
+                        ecommerce.notificaciones('La galería de este producto ya existe.', 'Mensaje de sistema', 'error');
+                        this.removeAllFiles();
+                        $.each(dropzoneFilesCopy, function(_, file) {
+                            if (file.status === Dropzone.ERROR) {
+                                    file.status = undefined;
+                                    file.accepted = undefined;
+                            }
+                            dzClosure.addFile(file);
+                        });
                     }
                 });
 
