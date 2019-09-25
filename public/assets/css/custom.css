@@ -234,13 +234,17 @@ div.tableDZ .file-row:nth-child(odd) {
 
 .dropzone {
     border: 2px dashed #eaeaea;
-    border-radius: 5px;
+    border-radius: 10px;
     background: white;
 }
 .dropzone .dz-preview .dz-progress {
     opacity: 0;
 }
-
+.dropzone .dz-message .note {
+    display: block;
+    color: #949494;
+    margin-top: 1.4rem;
+}
 /* FIN CLASES PARA DROPZONE */
 
 

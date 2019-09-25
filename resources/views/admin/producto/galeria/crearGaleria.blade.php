@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade onShowAddStock" tabindex="-1" role="dialog" id="modalCrearGaleria">
+<div class="modal fade onShowCrearGal" role="dialog" id="modalCrearGaleria">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="alert alert-danger" style="display:none"></div>

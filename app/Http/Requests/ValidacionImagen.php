@@ -25,7 +25,8 @@ class ValidacionImagen extends FormRequest
     {
         return [
             'estado' => 'nullable',
-            'nombre' => 'required|max:50|unique:imagen,nombre,' . $this->route('id')
+            'nombre' => 'required|max:50|unique:imagen,nombre,' . $this->route('id'),
+            'img' => 'image|max:2000'
         ];
     }
 }

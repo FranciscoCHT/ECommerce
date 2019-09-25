@@ -1,9 +1,9 @@
 <!-- HTML heavily inspired by http://blueimp.github.io/jQuery-File-Upload/ -->
-<div class="col-xs-9 boxModalStock" style="margin-left:15px;" {{--style="margin-right: calc(4.166666% - 15px);"--}}>
+<div class="col-xs-9 boxModalStock" style="width:81.51%" {{--style="margin-right: calc(4.166666% - 15px);"--}}>
     <div style="background-color:#eeeeee;"><span class="titleModalStock"><b>Seleccione un producto</b></span></div>
     <div class="form-group bodyModalStock" style="padding-top:12px;">
         <div class="col-xs-12">
-            <select class="form-control select2ProductStock" style="width: 100%" data-error="Escoja un producto..." data-placeholder="Buscar producto..." name="productoGal" id="productoGal">
+            <select class="form-control select2ProductStock requerido" style="width: 100%" data-error="Escoja un producto..." data-placeholder="Buscar producto..." name="productoGal" id="productoGal" required>
                 <option value="" selected disabled hidden></option>
                 @foreach($productos as $index => $producto)
                     <option data-preciostock="{{$producto->precio}}" data-namestock="{{$producto->nombre}}" value="{{$producto->id}}" @if (old('productoGal') == $producto->id) selected="selected" @endif>{{$producto->nombre}} - {{str_limit($producto->descripcion, 30, '...')}}</option>
@@ -21,7 +21,7 @@
 <div class="col-xs-12 dropzone dropzone-previews needsclick dz-clickable" id="dZUpload" name="dZUpload">
 
 </div>
-
+<div id="uplo"></div>
 {{-- <div id="actions" class="row">
     <div class="col-lg-11">
         <!-- The fileinput-button span is used to style the file input field as button -->
@@ -86,44 +86,95 @@
         $('#form-crearGaleria').submit(function(e){       
           //  e.preventDefault();
         })
-        
-        Dropzone.autoDiscover = false;      // Para que no asocie el plugin DZ a otras instancias, y asignar manualmente.
+        $('.onShowCrearGal').on('show.bs.modal', function () {      //Reseteo de formulario y galería al abrir el modal Crear.
+            $('#form-addStock').trigger('reset');
+            $('#productoGal').val(null).trigger('change');
+            Dropzone.forElement("#dZUpload").removeAllFiles(true);
+        })
+
+        // Para que no asocie el plugin DZ a otras instancias, y asignar manualmente.
+        Dropzone.autoDiscover = false;  
+
         var token = $('meta[name="csrf-token"]').attr('content');
         $("#dZUpload").dropzone({
             url: "galeria",
             headers: {'X-CSRF-TOKEN': token},
-            dictDefaultMessage: "Presione aquí o arrastre archivos para subir...",
+            dictDefaultMessage: "Presione aquí o arrastre archivos para subir...<span class='note needsclick'>(El tamaño máximo permitido para los archivos es de <strong>2 MB</strong>.)</span>",
+            dictFileTooBig: "Archivo demasiado grande, máximo 2 MB.",
             autoProcessQueue: false,
             uploadMultiple: true,
             parallelUploads: 10,
+            maxFilesize: 2,
             addRemoveLinks: true,
             init: function() {
                 dzClosure = this; // Makes sure that 'this' is understood inside the functions below.
 
                 // for Dropzone to process the queue (instead of default form behavior) -> Prevenir el submit del form.
                 document.getElementById("guardarGaleria").addEventListener("click", function(e) {
-                    // Make sure that the form isn't actually being sent.
-                    e.preventDefault();
+                    e.preventDefault();     // Make sure that the form isn't actually being sent.
                     e.stopPropagation();
-                    dzClosure.processQueue();
+                    if (jQuery("#productoGal").val() != null) {
+                        dzClosure.processQueue();
+                    } else {
+                        ecommerce.notificaciones('No se ha seleccionado un producto. Seleccione uno y vuelva a intentarlo.', 'Mensaje de sistema', 'error');
+                    }
+                });
+                
+                //Imprime el mensaje de error que haya ocurrido al subir foto.
+                this.on("error", function(file, message) { 
+                    if (message == 'errorExists') {
+                        ecommerce.notificaciones('La galería de este producto ya existe.', 'Mensaje de sistema', 'error');
+                        this.removeAllFiles();
+                    } else {
+                        ecommerce.notificaciones(message, 'Mensaje de sistema', 'error');
+                        this.removeFile(file); 
+                    }
                 });
 
-
-                //send all the form data along with the files:
+                //Se adjunta los datos del formulario al conjunto de imágenes a enviar.
                 this.on("sendingmultiple", function(data, xhr, formData) {
-                    formData.append("productoGal", jQuery("#productoGal").val());
-                    formData.append("estadoGal", jQuery("#estadoGal").prop('checked'));
+                    formData.append("producto_id", jQuery("#productoGal").val());
+                    formData.append("estado", Number(jQuery("#estadoGal").prop('checked')));
                 });
+
+                //Verifica si el archivo que se está subiendo ya existe en la zona de fotos, de ser así, no subir.
+                this.on("addedfile", function(file) {
+                    if (this.files.length) {
+                        var _i, _len;
+                        for (_i = 0, _len = this.files.length; _i < _len - 1; _i++) { // -1 to exclude current file
+                            if(this.files[_i].name === file.name && this.files[_i].size === file.size && this.files[_i].lastModifiedDate.toString() === file.lastModifiedDate.toString()) {
+                                this.removeFile(file);
+                            }
+                        }
+                    }
+                    // file.previewElement.addEventListener("click", function() {
+                    //     window.open('http://stackoverflow.com/', '_blank');
+                    // });
+                });
+                // this.on("thumbnail", function (file, dataUrl) {
+                //     $('#uplo').append('<img src="' + dataUrl + '" width="50" height="50" alt="">');
+                // });
+                // this.on("thumbnail", function (file, dataUrl) {
+
+                // });
             },
-            success: function (file, response) {
-                var imgName = response;
-                file.previewElement.classList.add("dz-success");
-                console.log(response);
+            success: function (file, response) {                        //Si todo fue realizado con éxito,
+                ecommerce.notificaciones('La galería fue creada con éxito.', 'Mensaje de sistema', 'success');
+                file.previewElement.classList.add("dz-success");        //Añade el icono success a imágenes.
+                $('#form-crearGaleria').trigger('reset');               //Resetea el formulario donde corresponda.
+                $('#productoGal').val(null).trigger('change');          //Resetea el selectBox de productos
+                this.removeAllFiles();                                  //Remueve todos los archivos del dropzone.
+                $("#modalCrearGaleria").modal("hide");                  //Esconde el modal.
+                setTimeout(function() {location.reload();}, 1000);      //Resetea la página en 1 seg.
             },
             error: function (file, response) {
+                // else if (response == 'errorLarge') {
+                //     ecommerce.notificaciones('Uno de los archivos de imagen es demasiado grande.', 'Mensaje de sistema', 'error')
+                // }
                 file.previewElement.classList.add("dz-error");
             }
         });
+        
         //var myDropzone = new Dropzone(".classDZ",
         // {
 

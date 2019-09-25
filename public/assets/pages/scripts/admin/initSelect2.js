@@ -19,6 +19,14 @@ $(function () {
             });
         }
     })
+
+    $('.onShowCrearGal').on('show.bs.modal', function () {
+        if (!$(this).find('.select2ProductStock').hasClass("select2-hidden-accessible")) {
+            $(this).find('.select2ProductStock').select2({
+                allowClear: true
+            });
+        }
+    })
     
     $('.onShowCrearSelect').on('show.bs.modal', function () {
         if (!$(this).find('.select2').hasClass("select2-hidden-accessible")) {
