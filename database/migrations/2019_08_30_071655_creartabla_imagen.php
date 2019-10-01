@@ -16,6 +16,7 @@ class CreartablaImagen extends Migration
         Schema::create('imagen', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre', 200);
+            $table->unique('nombre');
             $table->string('img', 700);
             $table->boolean('estado')->nullable();
             $table->unsignedBigInteger('galeria_id');

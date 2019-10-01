@@ -13,6 +13,7 @@
 @endsection
 @section('styles')
     <link rel="stylesheet" href="{{asset("assets/js/dropzone/dropzone.min.css")}}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 @endsection
 @push("scripts")
 <script src="{{asset("assets/pages/scripts/admin/index.js")}}" type="text/javascript"></script>
@@ -31,6 +32,7 @@
         <div class="col-lg-12">
             @include('includes.form-error')
             @include('includes.mensaje')
+            @include('admin.producto.galeria.editarGaleria')
             <div class="top-boton-left">
                 <div>
                     <!-- Trigger the modal with a button -->
@@ -81,7 +83,7 @@
                     <table class="table table-dark table-bordered table-hover table-striped table-button-del" id="tabla-data-producto">
                         <thead>
                             <tr>
-                                <th class="width70">N°</th>
+                                <th style="width:10px;">N°</th>
                                 <th>Nombre</th>
                                 <th>Descripción</th>
                                 <th>Estado</th>
@@ -105,12 +107,17 @@
                                     <td align="right">${{number_format($producto->precio, 0, '', '.')}}</td>
                                     <td align="right">${{number_format($producto->precio_oferta, 0, '', '.')}}</td>
                                     <td>@if ($producto->fecha_modificacion == null) Sin modificación @else {{$producto->fecha_modificacion ? date('d-m-Y H:i', strtotime($producto->fecha_modificacion)) : ''}} @endif</td>
-                                    <td>
-                                        <!-- Trigger the modal with a button -->
+                                    <td style="width:100px;">
+                                        <!-- Editar Galería-->
+                                        <button type="button" class="btn-accion-tabla tooltipsC editGalButton" data-toggle="modal" data-idprod="{{$producto->id}}" data-target="#modalEditGaleria" title="Editar galería" id="editGalButton">
+                                                <i class="fa fa-fw material-icons" style="font-size: 18px;vertical-align: text-bottom;">flip_camera_ios</i>
+                                        </button>
+                                        <!-- Editar Producto -->
                                         <button type="submit" class="btn-accion-tabla tooltipsC" data-toggle="modal" data-target="#modalEditar_{{ $producto->id }}" title="Editar este registro" id="open">
                                             <i class="fa fa-fw fa-pencil"></i>
                                         </button>
                                         @include('admin.producto.editar')
+                                        <!-- Desactivar Producto -->
                                         <form action="{{route('eliminar_producto', ['id' => $producto->id])}}" class="form-eliminar d-inline" method="POST">
                                             @csrf @method("delete")
                                             <button type="submit" class="btn-accion-tabla eliminar tooltipsC" title="Eliminar este registro">

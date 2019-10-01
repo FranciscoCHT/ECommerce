@@ -156,6 +156,37 @@ class GaleriaController extends Controller
         //
     }
 
+    public function getImagenes($id)
+    {
+        $idGaleria = Galeria::where('producto_id', $id)->orderBy('id', 'desc')->pluck('id');
+        $imagenes = Imagen::where('galeria_id', $idGaleria)->orderBy('id', 'desc')->select('nombre','img')->get();
+        return $imagenes;
+    }
+
+    public function eliminarImagen($name)
+    {
+        $id = Imagen::where('nombre', $name)->pluck('id');
+        $imgname = Imagen::where('nombre', $name)->pluck('img');
+        $idgaleria = Imagen::where('nombre', $name)->pluck('galeria_id');
+        $idproducto = Galeria::where('id', $idgaleria)->pluck('producto_id');
+        Imagen::destroy($id);
+        unlink(public_path('imagenes\productGallery\\'.$idproducto[0].'\\'.$imgname[0]));
+        // if ($request->ajax()) {
+        //     if (Producto::findOrFail($id)->update(['estado' => 0])) {
+        //         return response()->json(['mensaje' => 'deacProd']);
+        //     } else {
+        //         return response()->json(['mensaje' => 'ng']);
+        //     }
+        //     // if (Producto::destroy($id)) {
+        //     //     return response()->json(['mensaje' => 'ok']);
+        //     // } else {
+        //     //     return response()->json(['mensaje' => 'ng']);
+        //     // }
+        // } else {
+        //     //abort(404);
+        // }
+    }
+
     /**
      * Remove the specified resource from storage.
      *
