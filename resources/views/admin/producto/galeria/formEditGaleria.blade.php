@@ -14,7 +14,7 @@
 <div class="col-xs-2 boxModalStock" style="text-align:center; margin-left:10px; ">
     <div style="background-color:#eeeeee;"><span class="titleModalStock"><b>Estado</b></span></div>
     <div class="form-group bodyModalStock" style="padding-top:12px;margin:auto;">
-        <input class="toggle" id="estadoGal" type="checkbox" />
+        <input class="toggle" id="estadoEditGal" type="checkbox" />
     </div>
 </div>
 <div class="col-xs-12 dropzone dropzone-previews needsclick dz-clickable" id="dZEdit" name="dZEdit">
@@ -24,17 +24,12 @@
 @push('scripts')
     <script type="text/javascript">
         var idprod;
-        $('#modalEditGaleria').on('show.bs.modal', function () {
-            idprod = $('#editGalButton').data("idprod");         //Obtenemos el ID del producto a editar selecconado
-            $('#selectEditGal').val(idprod).trigger('change');   //Seteamos el producto a editar
-            $('#selectEditGal').prop('disabled', true);          //y bloqueamos el selectbox.
-
-            Dropzone.forElement("#dZEdit").cleaningUp = true;    //Para no disparar el evento onRemovedFile, se hace true, lo que no hace nada en onRemovedFile   
-            Dropzone.forElement("#dZEdit").removeAllFiles(true); //Eliminamos todos los productos del Plugin Dropzone al abrir modal.
-            Dropzone.forElement("#dZEdit").cleaningUp = false;   //Se vuelve a setear en falso, para que dropzone vuelva a detectar el evento onRemovedFile
-            var editdz = Dropzone.forElement("#dZEdit");         //Asigna el URL a dropzone
-            //asignarIdURL(editdz, url);                           //del id del producto a
-            editdz.options.url = "galeria/edit/" + idprod;       //editar seleccionado.
+        $('#modalEditGaleria').on('show.bs.modal', function (e) {   //Prevenir que se abra el modal de editar, para abrirlo
+            var button = e.relatedTarget;                           //cuando se confirme que existe galería.
+            if($(button).hasClass('preventOpen')) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
         })
         
         // function asignarIdURL(dropzone, url){
@@ -76,6 +71,19 @@
                         url: "galeria/imagenes/"+id,
                         type: "GET"
                     }).done((data) => {
+                        $('#modalEditGaleria').modal('show');
+                        idprod = $('#editGalButton').data("idprod");         //Obtenemos el ID del producto a editar selecconado
+                        $('#selectEditGal').val(idprod).trigger('change');   //Seteamos el producto a editar
+                        $('#selectEditGal').prop('disabled', true);          //y bloqueamos el selectbox.
+
+                        Dropzone.forElement("#dZEdit").cleaningUp = true;    //Para no disparar el evento onRemovedFile, se hace true, lo que no hace nada en onRemovedFile   
+                        Dropzone.forElement("#dZEdit").removeAllFiles(true); //Eliminamos todos los productos del Plugin Dropzone al abrir modal.
+                        Dropzone.forElement("#dZEdit").cleaningUp = false;   //Se vuelve a setear en falso, para que dropzone vuelva a detectar el evento onRemovedFile
+
+                        var editdz = Dropzone.forElement("#dZEdit");         //Asigna el URL a dropzone
+                        //asignarIdURL(editdz, url);                           //del id del producto a
+                        editdz.options.url = "galeria/edit/" + idprod;       //editar seleccionado.
+
                         for (let i = 0; i < data.length; i++) {
                             get_filesize("{{asset('/imagenes/productGallery')}}"+ '/' + id + '/' + data[i].img, function(size) {
                                 var imageSize = size;
@@ -103,7 +111,8 @@
                             });
                         }
                     }).fail((data) => {
-                        console.log('Error AJAX');
+                        //$('#modalEditGaleria').modal('hide');
+                        ecommerce.notificaciones('No existe galería para este producto. Cree la galería primero y luego edítela.', 'Mensaje de sistema', 'error');
                     });
                 });
                 
@@ -161,7 +170,11 @@
                     if (response == 'errorExists') {                //Se pregunta si el error es de que la galería ya existe. Si no se
                         var dropzoneFilesCopy = files.slice(0);     //hace el IF, se entra en un loop por conflicto con otros errores.
                         ecommerce.notificaciones('La galería de este producto ya existe.', 'Mensaje de sistema', 'error');
+
+                        Dropzone.forElement("#dZEdit").cleaningUp = true;
                         this.removeAllFiles();
+                        Dropzone.forElement("#dZEdit").cleaningUp = false;
+
                         $.each(dropzoneFilesCopy, function(_, file) {
                             if (file.status === Dropzone.ERROR) {
                                     file.status = undefined;
@@ -174,8 +187,9 @@
 
                 //Se adjunta los datos del formulario al conjunto de imágenes a enviar.
                 this.on("sendingmultiple", function(data, xhr, formData) {
+                    console.log('sendingmultiple');
                     formData.append("producto_id", jQuery("#selectEditGal").val());
-                    formData.append("estado", Number(jQuery("#estadoGal").prop('checked')));
+                    formData.append("estado", Number(jQuery("#estadoEditGal").prop('checked')));
                 });
 
                 //Verifica si el archivo que se está subiendo ya existe en la zona de fotos, de ser así, no subir.
@@ -192,6 +206,11 @@
                     //     window.open('http://stackoverflow.com/', '_blank');
                     // });
                 });
+
+                this.on("complete", function(file) {
+                    $(".dz-remove").html("<div><span class='fa fa-trash text-danger' style='font-size: 1.5em'></span></div>");
+                });
+
                 // this.on("thumbnail", function (file, dataUrl) {
                 //     $('#uplo').append('<img src="' + dataUrl + '" width="50" height="50" alt="">');
                 // });
@@ -200,11 +219,16 @@
                 // });
             },
             success: function (file, response) {                        //Si todo fue realizado con éxito,
+                console.log(response);
                 ecommerce.notificaciones('La galería fue creada con éxito.', 'Mensaje de sistema', 'success');
                 file.previewElement.classList.add("dz-success");        //Añade el icono success a imágenes.
                 $('#form-crearGaleria').trigger('reset');               //Resetea el formulario donde corresponda.
                 $('#selectEditGal').val(null).trigger('change');          //Resetea el selectBox de productos
+
+                Dropzone.forElement("#dZEdit").cleaningUp = true;
                 this.removeAllFiles();                                  //Remueve todos los archivos del dropzone.
+                Dropzone.forElement("#dZEdit").cleaningUp = false;
+
                 $("#modalCrearGaleria").modal("hide");                  //Esconde el modal.
                 //setTimeout(function() {location.reload();}, 1000);      //Resetea la página en 1 seg.
             },

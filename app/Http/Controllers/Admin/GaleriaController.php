@@ -153,7 +153,45 @@ class GaleriaController extends Controller
      */
     public function actualizar(ValidacionGaleria $request, $id)
     {
-        //
+        $input = $request->all();
+        
+        date_default_timezone_set('America/Santiago');
+        $productoid = $request->get('producto_id');                         //Obtengo el ID del producto a crear galería
+        // $productname = Producto::where('id', $productoid)->pluck('nombre'); //Nombre del producto
+        // $galeria = Galeria::where('producto_id', $productoid)->exists();    //luego pregunto si existe galería para este producto.
+
+        // if (!$galeria) {                                                    //De no existir, se crea la galería con sus datos
+        //     $data = $request->except(['file']);                             //y se obtiene el ID del registro creado.
+        //     $data['fecha_creacion'] = now();                                //Si ya existe, devolver mensaje de error 422.
+        //     $galeriaid = Galeria::create($data)->id;
+        // } else {
+        //     return response()->json('errorExists', 422);
+        // }
+
+        // if ($request->hasFile('file')) {
+        //     $files = $request->file('file');
+        //     $destinationPath = public_path('imagenes\productGallery\\'.$productoid);
+        //     //Storage::makeDirectory($destinationPath);
+        //     foreach ($files as $file) {
+        //         $contador = Imagen::count();
+        //         $extension = $file->getClientOriginalExtension();
+        //         $filename = $productname[0].'-'.$contador.'-'.date("Ymd");
+        //         $originname = $file->getClientOriginalName();
+
+        //         $dataImg['nombre'] = $filename;
+        //         $dataImg['img'] = $filename.'.'.$extension;
+        //         $dataImg['estado'] = 1;
+        //         $dataImg['galeria_id'] = $galeriaid;
+        //         $imagenid = Imagen::create($dataImg)->id;
+        //         //$extension = $file->getClientOriginalExtension();
+        //         //$filename = $name.".{$extension}";
+        //         $file->move($destinationPath, $dataImg['img']);
+        //     }
+        // }
+
+        $input = $request->all();
+        return redirect(dd($productoid));
+ 
     }
 
     public function getImagenes($id)

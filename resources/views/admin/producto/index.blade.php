@@ -109,7 +109,7 @@
                                     <td>@if ($producto->fecha_modificacion == null) Sin modificación @else {{$producto->fecha_modificacion ? date('d-m-Y H:i', strtotime($producto->fecha_modificacion)) : ''}} @endif</td>
                                     <td style="width:100px;">
                                         <!-- Editar Galería-->
-                                        <button type="button" class="btn-accion-tabla tooltipsC editGalButton" data-toggle="modal" data-idprod="{{$producto->id}}" data-target="#modalEditGaleria" title="Editar galería" id="editGalButton">
+                                        <button type="button" class="btn-accion-tabla tooltipsC editGalButton preventOpen" data-toggle="modal" data-idprod="{{$producto->id}}" data-target="#modalEditGaleria" title="Editar galería" id="editGalButton">
                                                 <i class="fa fa-fw material-icons" style="font-size: 18px;vertical-align: text-bottom;">flip_camera_ios</i>
                                         </button>
                                         <!-- Editar Producto -->

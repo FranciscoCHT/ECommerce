@@ -17,7 +17,7 @@
                     </div>
                     <div class="box-footer">
                         <button type="reset" class="btn btn-default btn-sm pull-left" id="cancelado" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-success btn-sm pull-right" id="actualizarGaleria">Crear</button>
+                        <button type="button" class="btn btn-success btn-sm pull-right" id="actualizarGaleria">Guardar cambios</button>
                     </div>
                 </form>
             </div>
