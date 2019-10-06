@@ -41,7 +41,7 @@
         $("#dZEdit").dropzone({
             url: "galeria/edit/"+idprod,
             headers: {'X-CSRF-TOKEN': token},
-            method: 'put',
+            //method: 'put',    //No funciona. Los datos llegan vacíos, por lo que el metodo PUT se appendea al form mas abajo.
             dictDefaultMessage: "Presione aquí o arrastre archivos para subir...<span class='note needsclick'>(El tamaño máximo permitido para los archivos es de <strong>2 MB</strong>.)</span>",
             dictFileTooBig: "Archivo demasiado grande, máximo 2 MB.",
             dictInvalidFileType: "No es posible agregar este tipo de archivos.",
@@ -72,6 +72,8 @@
                         type: "GET"
                     }).done((data) => {
                         $('#modalEditGaleria').modal('show');
+                        $("#estadoEditGal").prop("checked", data.estadoGal); //Seteamos el estado de la galería a editar.
+
                         idprod = $('#editGalButton').data("idprod");         //Obtenemos el ID del producto a editar selecconado
                         $('#selectEditGal').val(idprod).trigger('change');   //Seteamos el producto a editar
                         $('#selectEditGal').prop('disabled', true);          //y bloqueamos el selectbox.
@@ -84,7 +86,7 @@
                         //asignarIdURL(editdz, url);                           //del id del producto a
                         editdz.options.url = "galeria/edit/" + idprod;       //editar seleccionado.
 
-                        for (let i = 0; i < data.length; i++) {
+                        for (let i = 0; i < Object.keys(data).length-1; i++) {
                             get_filesize("{{asset('/imagenes/productGallery')}}"+ '/' + id + '/' + data[i].img, function(size) {
                                 var imageSize = size;
                                 var mock = {
@@ -190,6 +192,7 @@
                     console.log('sendingmultiple');
                     formData.append("producto_id", jQuery("#selectEditGal").val());
                     formData.append("estado", Number(jQuery("#estadoEditGal").prop('checked')));
+                    formData.append("_method", "PUT");  //Ya que el método PUT llega con datos vacíos a controlador, se appendea aqui _method, lo que hace la solicitud PUT y datoas llegan correctamente
                 });
 
                 //Verifica si el archivo que se está subiendo ya existe en la zona de fotos, de ser así, no subir.
@@ -220,17 +223,17 @@
             },
             success: function (file, response) {                        //Si todo fue realizado con éxito,
                 console.log(response);
-                ecommerce.notificaciones('La galería fue creada con éxito.', 'Mensaje de sistema', 'success');
+                ecommerce.notificaciones('La galería fue editada con éxito.', 'Mensaje de sistema', 'success');
                 file.previewElement.classList.add("dz-success");        //Añade el icono success a imágenes.
                 $('#form-crearGaleria').trigger('reset');               //Resetea el formulario donde corresponda.
-                $('#selectEditGal').val(null).trigger('change');          //Resetea el selectBox de productos
+                $('#selectEditGal').val(null).trigger('change');        //Resetea el selectBox de productos
 
-                Dropzone.forElement("#dZEdit").cleaningUp = true;
+                Dropzone.forElement("#dZEdit").cleaningUp = true;       //
                 this.removeAllFiles();                                  //Remueve todos los archivos del dropzone.
-                Dropzone.forElement("#dZEdit").cleaningUp = false;
+                Dropzone.forElement("#dZEdit").cleaningUp = false;      //
 
-                $("#modalCrearGaleria").modal("hide");                  //Esconde el modal.
-                //setTimeout(function() {location.reload();}, 1000);      //Resetea la página en 1 seg.
+                $("#modalEditGaleria").modal("hide");                   //Esconde el modal.
+                setTimeout(function() {location.reload();}, 1000);      //Resetea la página en 1 seg.
             },
             error: function (file, response) {
                 // else if (response == 'errorLarge') {

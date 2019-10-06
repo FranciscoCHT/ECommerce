@@ -155,49 +155,43 @@ class GaleriaController extends Controller
     {
         $input = $request->all();
         
-        date_default_timezone_set('America/Santiago');
-        $productoid = $request->get('producto_id');                         //Obtengo el ID del producto a crear galería
-        // $productname = Producto::where('id', $productoid)->pluck('nombre'); //Nombre del producto
-        // $galeria = Galeria::where('producto_id', $productoid)->exists();    //luego pregunto si existe galería para este producto.
+        $productoid = $request->get('producto_id');                             //Obtengo el ID del producto a editar galería
+        $productname = Producto::where('id', $productoid)->pluck('nombre');     //Nombre del producto
+        $galeriaid = Galeria::where('producto_id', $productoid)->value('id');   //Obtengo el ID de la galería a editar
+        $estadoGal = $request->get('estado');                                   //Obtengo el estado de la galería del formulario
 
-        // if (!$galeria) {                                                    //De no existir, se crea la galería con sus datos
-        //     $data = $request->except(['file']);                             //y se obtiene el ID del registro creado.
-        //     $data['fecha_creacion'] = now();                                //Si ya existe, devolver mensaje de error 422.
-        //     $galeriaid = Galeria::create($data)->id;
-        // } else {
-        //     return response()->json('errorExists', 422);
-        // }
+        if ($request->hasFile('file')) {
+            $files = $request->file('file');
+            $destinationPath = public_path('imagenes\productGallery\\'.$productoid);
+            foreach ($files as $file) {
+                $contador = Imagen::count();
+                $extension = $file->getClientOriginalExtension();
+                $filename = $productname[0].'-'.$contador.'-'.date("Ymd");
+                $originname = $file->getClientOriginalName();
 
-        // if ($request->hasFile('file')) {
-        //     $files = $request->file('file');
-        //     $destinationPath = public_path('imagenes\productGallery\\'.$productoid);
-        //     //Storage::makeDirectory($destinationPath);
-        //     foreach ($files as $file) {
-        //         $contador = Imagen::count();
-        //         $extension = $file->getClientOriginalExtension();
-        //         $filename = $productname[0].'-'.$contador.'-'.date("Ymd");
-        //         $originname = $file->getClientOriginalName();
+                $dataImg['nombre'] = $filename;
+                $dataImg['img'] = $filename.'.'.$extension;
+                $dataImg['estado'] = 1;
+                $dataImg['galeria_id'] = $galeriaid;
+                $imagenid = Imagen::create($dataImg)->id;
+                $file->move($destinationPath, $dataImg['img']);
+            }
+        }
 
-        //         $dataImg['nombre'] = $filename;
-        //         $dataImg['img'] = $filename.'.'.$extension;
-        //         $dataImg['estado'] = 1;
-        //         $dataImg['galeria_id'] = $galeriaid;
-        //         $imagenid = Imagen::create($dataImg)->id;
-        //         //$extension = $file->getClientOriginalExtension();
-        //         //$filename = $name.".{$extension}";
-        //         $file->move($destinationPath, $dataImg['img']);
-        //     }
-        // }
+        date_default_timezone_set('America/Santiago');                              //Se actualiza la fecha de modificación
+        Galeria::findOrFail($galeriaid)->update(['fecha_modificacion' => now()]);   //y el estado nuevo.
+        Galeria::findOrFail($galeriaid)->update(['estado' => $estadoGal]);
 
-        $input = $request->all();
-        return redirect(dd($productoid));
+        return $input;
  
     }
 
     public function getImagenes($id)
     {
-        $idGaleria = Galeria::where('producto_id', $id)->orderBy('id', 'desc')->pluck('id');
+        $idGaleria = Galeria::where('producto_id', $id)->orderBy('id', 'desc')->value('id');
+        $estadoGal = Galeria::findOrFail($idGaleria)->value('estado');
         $imagenes = Imagen::where('galeria_id', $idGaleria)->orderBy('id', 'desc')->select('nombre','img')->get();
+        $imagenes['estadoGal'] = $estadoGal;        //Se adjunta el estado al objeto, para luego recorrer en js solo imagenes.
         return $imagenes;
     }
 
@@ -209,20 +203,6 @@ class GaleriaController extends Controller
         $idproducto = Galeria::where('id', $idgaleria)->pluck('producto_id');
         Imagen::destroy($id);
         unlink(public_path('imagenes\productGallery\\'.$idproducto[0].'\\'.$imgname[0]));
-        // if ($request->ajax()) {
-        //     if (Producto::findOrFail($id)->update(['estado' => 0])) {
-        //         return response()->json(['mensaje' => 'deacProd']);
-        //     } else {
-        //         return response()->json(['mensaje' => 'ng']);
-        //     }
-        //     // if (Producto::destroy($id)) {
-        //     //     return response()->json(['mensaje' => 'ok']);
-        //     // } else {
-        //     //     return response()->json(['mensaje' => 'ng']);
-        //     // }
-        // } else {
-        //     //abort(404);
-        // }
     }
 
     /**
