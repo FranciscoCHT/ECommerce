@@ -182,17 +182,30 @@ class GaleriaController extends Controller
         Galeria::findOrFail($galeriaid)->update(['fecha_modificacion' => now()]);   //y el estado nuevo.
         Galeria::findOrFail($galeriaid)->update(['estado' => $estadoGal]);
 
-        return $input;
+        return Galeria::findOrFail($galeriaid);
  
     }
 
     public function getImagenes($id)
     {
         $idGaleria = Galeria::where('producto_id', $id)->orderBy('id', 'desc')->value('id');
-        $estadoGal = Galeria::findOrFail($idGaleria)->value('estado');
         $imagenes = Imagen::where('galeria_id', $idGaleria)->orderBy('id', 'desc')->select('nombre','img')->get();
-        $imagenes['estadoGal'] = $estadoGal;        //Se adjunta el estado al objeto, para luego recorrer en js solo imagenes.
-        return $imagenes;
+        if ($idGaleria != '') {
+            return $imagenes;
+        } else {
+            abort(404, 'No existe galeria.');
+        }
+    }
+
+    public function getInfoGaleria($id)
+    {
+        $galeria = Galeria::where('producto_id', $id)->with('productos')->first();
+        if ($galeria != '') {
+            return $galeria;
+        } else {
+            abort(404, 'No existe galeria.');
+        }
+        
     }
 
     public function eliminarImagen($name)

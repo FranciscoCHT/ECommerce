@@ -21,8 +21,8 @@ class Galeria extends Model
         return $this->hasMany(Imagen::class);
     }
 
-    public function producto()
+    public function productos()
     {
-        return $this->belongsTo(Producto::class);
+        return $this->belongsTo(Producto::class, 'producto_id');
     }
 }

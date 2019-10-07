@@ -295,3 +295,18 @@ div.tableDZ .file-row:nth-child(odd) {
   left: 36px;
 }
 /* FIN CLASES SWITCH SLIDER */
+
+/* Info galería modal */
+.only-textTitle {
+    display: block;
+    padding-left:20px;
+}
+.only-textInfo {
+    display: inline-block;
+    width: 40%;
+    border: none;
+    outline: none;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+/* FIN Info Galeria modal */

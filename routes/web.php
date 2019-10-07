@@ -94,6 +94,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::post('galeria', 'GaleriaController@guardar')->name('guardar_galeria');
     Route::put('galeria/edit/{id}', 'GaleriaController@actualizar')->name('actualizar_galeria');
     Route::get('galeria/imagenes/{id}', 'GaleriaController@getImagenes')->name('get_imagenes');
+    Route::get('galeria/infoGal/{id}', 'GaleriaController@getInfoGaleria')->name('get_infoGaleria');
     Route::delete('galeria/imagenes/{name}', 'GaleriaController@eliminarImagen')->name('eliminar_imagen');
     //Route::delete('galeria/{id}', 'GaleriaController@eliminar')->name('eliminar_galeria');
     /*Rutas IMAGEN*/

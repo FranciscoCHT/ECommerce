@@ -33,6 +33,6 @@ class Producto extends Model
 
     public function galeria()
     {
-        return $this->hasOne(Galeria::class, 'producto_galeria');
+        return $this->hasOne(Galeria::class, 'producto_id');
     }
 }
