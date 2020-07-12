@@ -1,0 +1,312 @@
+label.requerido::after {
+    content: "*";
+    color: #e73d4a
+}
+
+.btn-accion-tabla {
+    cursor: pointer;
+    border: none;
+    background: 0;
+    padding: 0 0 0 5px;
+    font-size: 14px !important;
+    line-height: 1.5;
+}
+
+.d-inline {
+    display: inline;
+}
+
+.width70 {
+    width: 70px !important;
+}
+
+/* .modal-dialog { 
+    max-width: 100%; 
+    width: auto !important; 
+    display: inline-block;  
+}
+
+.modal{
+     text-align: center; 
+} */
+
+.modal-header {
+    padding: 1rem;
+    border-bottom: 1px solid #dadada;
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem;
+    background-color: #eee;
+}
+
+.modal-content {
+    border-radius: .3rem;
+}
+
+.modal-body {
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+ 
+.modal-title {
+    font-weight: bold;
+}
+
+.fadeopen {
+    animation: fadein .5s;
+    -moz-animation: fadein .5s; /* Firefox */
+    -webkit-animation: fadein .5s; /* Safari and Chrome */
+    -o-animation: fadein .5s; /* Opera */
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+.content {
+    font-family: 'Helvetica Neue', 'Segoe UI', Helvetica, Verdana, sans-serif;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 15px;
+}
+
+.btn-success {
+    background-color: #72d63c;
+    border-color: transparent;
+    color: #fff;
+}
+
+.table {
+    color: #28484f;
+    background-color: #f5f5f5;
+}
+
+th {
+    color: #28484f;
+    font-weight: 500!important;
+}
+
+.table-bordered>thead>tr>th, .table-bordered>thead>tr>td {
+    border-bottom: 2px solid #dedede;
+    border-top: 2px solid #dedede!important;
+}
+
+.top-boton-right {
+    margin-bottom: 10px;
+    padding-left: 10px;
+    display:inline-block;
+    float:right;
+}
+
+.top-boton-left {
+    margin-bottom: 10px;
+    display:inline-block;
+    float:left;
+}
+
+.box {
+    display:inline-block;
+    border: 0px solid #d2d6de;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+/* 
+.count2 {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+}
+.count1 {
+    -webkit-column-count: 1;
+    -moz-column-count: 1;
+    column-count: 1;
+} */
+
+.form-control {
+    border-radius: 2px!important;
+}
+
+select,
+select option {
+  color: #555;
+}
+
+select:invalid,
+select option[value=""] {
+  color: #b39999;
+}
+
+.form-inline .form-group {    /*                                                                      */
+    display: block;           /*                                                                      */
+    margin-bottom: 15px;      /*                                                                      */
+}                             /* Clases para modal editar en form, debido a conflictos con DataTables */
+.form-inline .form-control {  /*                                                                      */
+    width: 100%;              /*                                                                      */
+}                             /*                                                                      */
+
+table.dataTable {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    border-collapse: collapse !important;
+}
+
+.footerTabla { /*paginator y info */
+    padding: 10px 15px 10px 20px;
+}
+
+.logoEmpresa {
+    display:block;
+    width:50px;
+    height: 50px;
+    border-radius: 50px;
+    font-size: 25px;
+    text-align: center;
+    margin-right: 10px;
+    background: #fff;
+    line-height: 1.7em;
+}
+
+.titleModalStock {
+    padding-left:10px;
+    color: #6a828e;
+    font-size:14px;
+    letter-spacing: 1px;
+}
+
+.bodyModalStock {
+    font-size:12px;
+    margin-right: 0px!important;
+    margin-left: 0px!important;
+    padding-bottom: 16px;
+    padding-top: 0px; 
+    margin-bottom: 0px;
+}
+
+.boxModalStock {
+    border: 1px solid #eaeaea; 
+    padding:0px;
+    margin-bottom:10px;
+}
+
+
+/* CLASES PARA DROPZONE */
+div.tableDZ {
+    display: table;
+}
+div.tableDZ .file-row {
+    display: table-row;
+    background-color: #ffffff;
+}
+div.tableDZ .file-row > div {
+    display: table-cell;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    padding: 8px;
+}
+div.tableDZ .file-row:nth-child(odd) {
+    background: #f9f9f9;
+}
+/* The total progress gets shown by event listeners */
+#total-progress {
+    opacity: 0;
+    transition: opacity 0.3s linear;
+}
+
+/* Hide the progress bar when finished */
+#previews .file-row.dz-success .progress {
+    opacity: 0;
+    transition: opacity 0.3s linear;
+}
+
+/* Hide the delete button initially */
+#previews .file-row .delete {
+    display: none;
+}
+
+/* Hide the start and cancel buttons and show the delete button */
+
+#previews .file-row.dz-success .start,
+#previews .file-row.dz-success .cancel {
+    display: none;
+}
+#previews .file-row.dz-success .delete {
+    display: block;
+}
+
+
+.dropzone {
+    border: 2px dashed #eaeaea;
+    border-radius: 10px;
+    background: white;
+}
+.dropzone .dz-preview .dz-progress {
+    opacity: 0;
+}
+.dropzone .dz-message .note {
+    display: block;
+    color: #949494;
+    margin-top: 1.4rem;
+}
+/* FIN CLASES PARA DROPZONE */
+
+
+/* CLASES SWITCH SLIDER */
+.toggle {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 60px;
+  height: 26px;
+  display: inline-block;
+  position: relative;
+  border-radius: 50px;
+  overflow: hidden;
+  outline: none!important;
+  border: none;
+  cursor: pointer;
+  background-color: #707070;
+  transition: background-color ease 0.3s;
+}
+
+.toggle:before {
+  content: "on off";
+  display: block;
+  position: absolute;
+  z-index: 2;
+  width: 22px;
+  height: 22px;
+  background: #fff;
+  left: 2px;
+  top: 2px;
+  border-radius: 50%;
+  font: 12px/23px Helvetica;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-indent: -25px;
+  word-spacing: 30px;
+  color: #fff;
+  text-shadow: -1px -1px rgba(0,0,0,0.15);
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  transition: all cubic-bezier(0.3, 1.5, 0.7, 1) 0.3s;
+}
+.toggle:checked {
+  background-color: #4CD964;
+}
+.toggle:checked:before {
+  left: 36px;
+}
+/* FIN CLASES SWITCH SLIDER */
+
+/* Info galería modal */
+.only-textTitle {
+    display: block;
+    padding-left:20px;
+}
+.only-textInfo {
+    display: inline-block;
+    width: 40%;
+    border: none;
+    outline: none;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+/* FIN Info Galeria modal */
